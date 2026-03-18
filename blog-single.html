@@ -1,0 +1,520 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10 Web Design Trends Dominating 2024 | HmcxStudio Blog</title>
+<meta name="description" content="Discover the cutting-edge web design trends shaping 2024 — from glassmorphism and AI visuals to dark mode and micro-animations.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* ---- Blog single page extras ---- */
+  .blog-single-section { padding: 80px 0 100px; background: var(--off-white); }
+
+  /* Hero image placeholder with gradient + icon */
+  .blog-single-hero {
+    background-image: linear-gradient(135deg, rgba(30,86,200,.45), rgba(6,182,212,.35)), url('https://picsum.photos/seed/hmcx-blog-hero/1400/780');
+    background-size: cover;
+    background-position: center;
+  }
+  .blog-single-hero-placeholder { font-size: 5rem; color: rgba(255,255,255,.25); }
+
+  /* Author avatar inside meta */
+  .author-avatar-sm {
+    width: 36px; height: 36px; border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-main), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-weight: 800;
+    font-size: .78rem; color: white; flex-shrink: 0;
+  }
+
+  /* Author bio card */
+  .author-bio-card {
+    display: flex; gap: 20px; align-items: flex-start;
+    padding: 28px 30px; border-radius: 18px;
+    background: linear-gradient(135deg, var(--blue-ghost), var(--blue-pale));
+    border: 1px solid var(--blue-pale);
+    margin-top: 36px;
+  }
+  .author-bio-avatar {
+    width: 70px; height: 70px; border-radius: 50%; flex-shrink: 0;
+    background: linear-gradient(135deg, var(--blue-main), var(--accent));
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 800; color: white;
+    border: 3px solid white; box-shadow: 0 4px 18px rgba(30,86,200,.2);
+  }
+  .author-bio-text h4 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 2px; }
+  .author-bio-text span { font-size: .8rem; color: var(--blue-main); font-weight: 600; display: block; margin-bottom: 8px; }
+  .author-bio-text p { font-size: .86rem; color: var(--text-light); line-height: 1.65; }
+
+  /* ToC widget */
+  .toc-list { display: flex; flex-direction: column; gap: 0; counter-reset: toc-counter; }
+  .toc-item {
+    display: flex; align-items: flex-start; gap: 10px;
+    padding: 9px 0; border-bottom: 1px solid rgba(30,86,200,.06);
+    font-size: .86rem; color: var(--text-mid); text-decoration: none;
+    transition: var(--transition); line-height: 1.4;
+    counter-increment: toc-counter;
+  }
+  .toc-item:last-child { border-bottom: none; }
+  .toc-item::before {
+    content: counter(toc-counter, decimal-leading-zero);
+    font-size: .72rem; font-weight: 700; color: var(--blue-main);
+    font-family: 'Space Grotesk', sans-serif;
+    background: var(--blue-ghost); border: 1px solid var(--blue-pale);
+    width: 26px; height: 26px; border-radius: 6px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .toc-item:hover { color: var(--blue-main); padding-left: 4px; }
+
+  /* Sidebar CTA card */
+  .sidebar-cta-card {
+    background: linear-gradient(135deg, var(--blue-main), var(--blue-bright));
+    border-radius: 20px; padding: 30px 26px; color: white; text-align: center;
+  }
+  .sidebar-cta-card .sc-icon-wrap {
+    width: 60px; height: 60px; border-radius: 16px;
+    background: rgba(255,255,255,.18); margin: 0 auto 16px;
+    display: flex; align-items: center; justify-content: center; font-size: 1.5rem;
+  }
+  .sidebar-cta-card h3 { font-size: 1.08rem; font-weight: 700; margin-bottom: 10px; }
+  .sidebar-cta-card p { font-size: .84rem; opacity: .85; line-height: 1.6; margin-bottom: 20px; }
+  .sidebar-cta-card .btn { background: white; color: var(--blue-main); width: 100%; justify-content: center; font-size: .88rem; }
+
+  /* Related posts section */
+  .related-posts { padding: 80px 0; background: var(--white); }
+  .related-posts-header { margin-bottom: 40px; }
+  .related-posts-header h2 { font-size: clamp(1.5rem, 2.5vw, 2rem); font-weight: 800; }
+  .related-posts-header h2 span { background: linear-gradient(90deg, var(--blue-main), var(--accent)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+  .related-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+
+  @media (max-width: 768px) {
+    .related-grid { grid-template-columns: 1fr; }
+    .author-bio-card { flex-direction: column; align-items: center; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LEFT SOCIALS -->
+<div class="side-social">
+  <span class="side-label">Follow</span>
+  <a href="#" class="ss-link"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="ss-link"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.linkedin.com/company/hmcx-studio/posts/?feedView=all" class="ss-link"><i class="fab fa-linkedin-in"></i></a>
+  
+</div>
+
+<!-- CHATBOT FAB -->
+<a href="javascript:void(0)" class="chatbot-fab" id="chatbotFab"><i class="fas fa-robot"></i></a>
+<div class="chatbot-panel" id="chatbotPanel">
+  <div class="chatbot-head">
+    <div class="chatbot-title"><i class="fas fa-robot"></i> HmcxStudio Assistant</div>
+    <button class="chatbot-close" id="chatbotClose">×</button>
+  </div>
+  <div class="chatbot-body">
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="cb-msg bot">Hi! How can we help?</div>
+    </div>
+    <div class="chatbot-actions">
+      <button class="cb-btn">Services</button>
+      <button class="cb-btn primary">Get Quote</button>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatbotInput" placeholder="Type...">
+      <button class="chatbot-send" id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-btns">
+  <a href="https://wa.me/918005849281" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+  <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="HMCx Studio" class="logo-img"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-dropdown">
+      <a href="services.html">Services <i class="fas fa-chevron-down" style="font-size:.65rem"></i></a>
+      <div class="nav-dropdown-menu">
+        <a href="service-detail.html?s=web"><i class="fas fa-laptop-code"></i> Website Development</a>
+        <a href="service-detail.html?s=seo"><i class="fas fa-search"></i> SEO Optimization</a>
+        <a href="service-detail.html?s=marketing"><i class="fas fa-bullhorn"></i> Digital Marketing</a>
+        <a href="service-detail.html?s=ads"><i class="fas fa-ad"></i> Ads Management</a>
+        <a href="service-detail.html?s=ai"><i class="fas fa-robot"></i> AI Development</a>
+        <a href="service-detail.html?s=logo"><i class="fas fa-pen-nib"></i> Logo Designing</a>
+      </div>
+    </li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="industries.html">Industries</a></li>
+    <li><a href="blog.html" class="active">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Free Quote</a>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-users"></i> About</a>
+  <a href="services.html"><i class="fas fa-cogs"></i> Services</a>
+  <a href="projects.html"><i class="fas fa-briefcase"></i> Projects</a>
+  <a href="industries.html"><i class="fas fa-industry"></i> Industries</a>
+  <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  <div class="mobile-divider"></div>
+  <a href="contact.html" class="mobile-cta"><i class="fas fa-rocket"></i> Get Free Quote</a>
+</div>
+
+<!-- PAGE HERO -->
+<section class="page-hero" style="padding-top:120px;padding-bottom:70px">
+  <div class="page-hero-particles">
+    <div class="ph-particle" style="width:180px;height:180px;background:rgba(59,130,246,.07);top:10%;left:3%;animation-duration:10s;"></div>
+    <div class="ph-particle" style="width:110px;height:110px;background:rgba(6,182,212,.08);top:60%;right:6%;animation-duration:8s;"></div>
+  </div>
+  <div class="container">
+    <div class="page-hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>›</span>
+        <a href="blog.html">Blog</a>
+        <span>›</span>
+        <span class="current">Web Design Trends</span>
+      </div>
+      <h1>10 Web Design Trends<br><span>Dominating 2024</span></h1>
+      <div class="page-hero-tags" style="margin-top:18px">
+        <span class="page-hero-tag"><i class="fas fa-laptop-code" style="margin-right:5px"></i>Web Development</span>
+        <span class="page-hero-tag"><i class="fas fa-clock" style="margin-right:5px"></i>8 min read</span>
+        <span class="page-hero-tag"><i class="fas fa-calendar" style="margin-right:5px"></i>Jan 2024</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG SINGLE SECTION -->
+<section class="blog-single-section">
+  <div class="container">
+    <div class="blog-single-grid">
+
+      <!-- LEFT: Article Content -->
+      <article class="blog-single-content">
+
+        <!-- Hero image -->
+        <div class="blog-single-hero">
+          <div class="blog-single-hero-placeholder">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+        </div>
+
+        <!-- Article body -->
+        <div class="blog-single-body">
+
+          <!-- Meta bar -->
+          <div class="blog-single-meta">
+            <span>
+              <div class="author-avatar-sm">SS</div>
+              &nbsp;Sneha Singh
+            </span>
+            <span><i class="fas fa-calendar"></i> January 15, 2024</span>
+            <span><i class="fas fa-clock"></i> 8 min read</span>
+            <span><i class="fas fa-eye"></i> 4,820 views</span>
+          </div>
+
+          <h1>10 Web Design Trends Dominating 2024</h1>
+
+          <p>The digital landscape never stands still. Every year brings a fresh wave of design innovations that redefine how websites look, feel, and perform. In 2024, the boundaries between creativity and technology are blurring like never before — AI is shaping visual content, user expectations are higher, and the competition for attention is fiercer than ever.</p>
+
+          <p>Whether you're a designer, developer, or business owner planning a website refresh, understanding these trends will give you a decisive edge. Here are the ten most influential web design trends of 2024.</p>
+
+          <h2 id="trend-1">1. Glassmorphism &amp; Frosted Glass Effects</h2>
+          <p>Glassmorphism made its debut a few years ago and has only deepened its grip in 2024. The technique uses semi-transparent backgrounds, subtle blur effects, and light borders to create a "frosted glass" aesthetic. When applied to UI cards, modals, and navigation elements, glassmorphism gives interfaces a modern, layered depth. The key is restraint — overusing the effect cheapens the look. When done tastefully, it lends a premium, spacious quality to digital experiences.</p>
+
+          <h2 id="trend-2">2. AI-Generated Visuals &amp; Content</h2>
+          <p>The explosion of generative AI tools like Midjourney, DALL-E 3, and Adobe Firefly has permanently altered the visual production pipeline. Designers in 2024 are blending AI-generated imagery with hand-crafted elements to produce unique, on-brand visuals at a fraction of the traditional cost. Beyond images, AI is also influencing copy, layout suggestions, and even accessibility audits. Smart teams are using AI as a creative co-pilot, not a replacement — and the results are strikingly fresh.</p>
+
+          <blockquote>
+            "Great design is not just about aesthetics. It's about creating experiences that people remember, trust, and return to. In 2024, the best websites are those that seamlessly blend technology with humanity."
+            <br><br>— Sneha Singh, Head of Design at HmcxStudio
+          </blockquote>
+
+          <h2 id="trend-3">3. Micro-Animations &amp; Interactivity</h2>
+          <p>Micro-animations are the small, purposeful animations that provide feedback, guide users, and add delight to everyday interactions. Hover effects that subtly shift an element's depth, buttons that pulse when hovered, progress indicators that animate smoothly — these seemingly minor touches significantly elevate perceived quality. In 2024, designers are using CSS animations and JavaScript libraries like GSAP and Framer Motion to create fluid experiences without heavy performance costs. The rule: every animation should serve a purpose, not just look pretty.</p>
+
+          <h2 id="trend-4">4. Dark Mode Design</h2>
+          <p>Dark mode has graduated from a novelty to an expectation. A growing percentage of users habitually browse in dark mode, and websites that don't accommodate this preference risk feeling out of date. In 2024, the best dark mode implementations go beyond simply inverting colours — they use carefully calibrated dark palettes, adjusted contrast ratios, and strategic accent colours to ensure readability and visual hierarchy. Building dark mode into your design system from the start, rather than retrofitting it later, is now considered best practice.</p>
+
+          <h2 id="trend-5">5. Mobile-First, AI-Optimised Layouts</h2>
+          <p>Mobile traffic has accounted for the majority of web visits for several years, but 2024 marks the rise of AI-assisted mobile optimisation. Tools can now analyse how real users interact with a mobile layout and suggest structural improvements in real time. Designs are being conceived for small screens first, with features like thumb-friendly navigation zones, swipe-native carousels, and collapsible content blocks becoming standard rather than optional. Combined with Google's mobile-first indexing, a poor mobile experience is now a direct ranking liability.</p>
+
+          <h3 id="trend-6">6. Bento Grid Layouts</h3>
+          <p>Inspired by the neat compartments of a Japanese bento box, bento grid layouts organise content into modular, visually distinct blocks of varying sizes. This trend, popularised by Apple's product pages, delivers structured information in a visually engaging and scannable way. It's particularly effective for showcasing features, portfolios, and statistics because each block commands individual attention while contributing to a coherent whole.</p>
+
+          <h3 id="trend-7">7. Bold, Expressive Typography</h3>
+          <p>Typography is stepping forward as the primary design element in 2024. Variable fonts, oversized headlines, and mixed-weight pairings are being used to create strong visual hierarchies and emotional impact. Kinetic typography — text that moves, scales, or transforms on scroll — is appearing in hero sections and landing pages to create memorable first impressions. When your brand has something bold to say, the typography should shout it.</p>
+
+          <h3 id="trend-8">8. Scroll-Triggered Animations</h3>
+          <p>Parallax has evolved. Modern scroll-triggered animations go far beyond background layers moving at different speeds. In 2024, designers are using the Intersection Observer API and tools like Locomotive Scroll to create narrative-driven experiences where elements enter, transform, and exit as users progress through a page. Used strategically on landing pages and product showcases, these effects dramatically increase dwell time and engagement metrics.</p>
+
+          <h3 id="trend-9">9. Accessible &amp; Inclusive Design</h3>
+          <p>Accessibility is no longer a compliance checkbox — it's a core design principle. WCAG 2.2 guidelines, focus-visible indicators, adequate colour contrast ratios, semantic HTML, and keyboard navigation are all receiving renewed attention in 2024. Beyond ethics, accessibility is practical: it broadens your audience, improves SEO, and reduces legal risk. The most respected design teams now audit for accessibility at every stage of the design and development process.</p>
+
+          <h3 id="trend-10">10. Sustainability-Conscious Design</h3>
+          <p>The carbon footprint of the internet is significant and growing. Sustainable web design — reducing page weight, optimising images, using efficient hosting, and minimising unnecessary scripts — is emerging as a genuine trend in 2024. Lighter pages not only consume less energy but also load faster, rank better, and convert more effectively. It's one of the rare instances where doing good for the environment and doing good for business perfectly align.</p>
+
+          <p style="margin-top:28px">Staying ahead of design trends requires equal parts awareness and discernment. Not every trend belongs in every project — the best designers pick the ones that serve their users and their brand story. If you're looking to build a website that leverages the best of 2024's design landscape, the HmcxStudio team is ready to help you create something truly exceptional.</p>
+
+          <!-- Tags -->
+          <div class="blog-tags">
+            <a href="blog.html" class="blog-tag">Web Design</a>
+            <a href="blog.html" class="blog-tag">UI/UX</a>
+            <a href="blog.html" class="blog-tag">Trends</a>
+            <a href="blog.html" class="blog-tag">CSS</a>
+            <a href="blog.html" class="blog-tag">Figma</a>
+            <a href="blog.html" class="blog-tag">2024</a>
+          </div>
+
+          <!-- Author Bio -->
+          <div class="author-bio-card">
+            <div class="author-bio-avatar">SS</div>
+            <div class="author-bio-text">
+              <h4>Sneha Singh</h4>
+              <span>Head of Design, HmcxStudio</span>
+              <p>Sneha leads the design team at HmcxStudio with over 7 years of experience in UI/UX, branding, and digital product design. She's passionate about crafting interfaces that are as functional as they are beautiful, and writes regularly about design trends, tools, and strategy.</p>
+            </div>
+          </div>
+
+        </div><!-- /.blog-single-body -->
+      </article><!-- /article -->
+
+      <!-- RIGHT: Sidebar -->
+      <aside class="blog-sidebar">
+
+        <!-- Table of Contents -->
+        <div class="sidebar-widget">
+          <h3>Table of Contents</h3>
+          <div class="toc-list">
+            <a href="#trend-1" class="toc-item">Glassmorphism &amp; Frosted Glass Effects</a>
+            <a href="#trend-2" class="toc-item">AI-Generated Visuals &amp; Content</a>
+            <a href="#trend-3" class="toc-item">Micro-Animations &amp; Interactivity</a>
+            <a href="#trend-4" class="toc-item">Dark Mode Design</a>
+            <a href="#trend-5" class="toc-item">Mobile-First, AI-Optimised Layouts</a>
+            <a href="#trend-6" class="toc-item">Bento Grid Layouts</a>
+            <a href="#trend-7" class="toc-item">Bold, Expressive Typography</a>
+            <a href="#trend-8" class="toc-item">Scroll-Triggered Animations</a>
+            <a href="#trend-9" class="toc-item">Accessible &amp; Inclusive Design</a>
+            <a href="#trend-10" class="toc-item">Sustainability-Conscious Design</a>
+          </div>
+        </div>
+
+        <!-- Recent Posts -->
+        <div class="sidebar-widget">
+          <h3>Recent Posts</h3>
+          <div class="recent-post">
+            <div class="rp-thumb pi-bg2"><i class="fas fa-robot"></i></div>
+            <div class="rp-info">
+              <h4><a href="blog-single.html">How AI is Revolutionizing Digital Marketing</a></h4>
+              <span><i class="fas fa-calendar" style="margin-right:4px;color:var(--blue-main)"></i>Feb 3, 2024</span>
+            </div>
+          </div>
+          <div class="recent-post">
+            <div class="rp-thumb pi-bg3"><i class="fas fa-search"></i></div>
+            <div class="rp-info">
+              <h4><a href="blog-single.html">Complete SEO Guide: Rank on Page 1 in 2024</a></h4>
+              <span><i class="fas fa-calendar" style="margin-right:4px;color:var(--blue-main)"></i>Feb 20, 2024</span>
+            </div>
+          </div>
+          <div class="recent-post">
+            <div class="rp-thumb pi-bg4"><i class="fas fa-ad"></i></div>
+            <div class="rp-info">
+              <h4><a href="blog-single.html">Google Ads vs Meta Ads: Which is Better?</a></h4>
+              <span><i class="fas fa-calendar" style="margin-right:4px;color:var(--blue-main)"></i>Mar 5, 2024</span>
+            </div>
+          </div>
+          <div class="recent-post">
+            <div class="rp-thumb pi-bg5"><i class="fas fa-pen-nib"></i></div>
+            <div class="rp-info">
+              <h4><a href="blog-single.html">Logo Design Principles Every Brand Needs</a></h4>
+              <span><i class="fas fa-calendar" style="margin-right:4px;color:var(--blue-main)"></i>Mar 18, 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tags -->
+        <div class="sidebar-widget">
+          <h3>Tags</h3>
+          <div class="tags-cloud">
+            <a href="blog.html" class="blog-tag">Web Design</a>
+            <a href="blog.html" class="blog-tag">UI/UX</a>
+            <a href="blog.html" class="blog-tag">SEO</a>
+            <a href="blog.html" class="blog-tag">AI</a>
+            <a href="blog.html" class="blog-tag">Marketing</a>
+            <a href="blog.html" class="blog-tag">Figma</a>
+            <a href="blog.html" class="blog-tag">CSS</a>
+            <a href="blog.html" class="blog-tag">Trends</a>
+            <a href="blog.html" class="blog-tag">WordPress</a>
+            <a href="blog.html" class="blog-tag">Performance</a>
+          </div>
+        </div>
+
+        <!-- CTA Widget -->
+        <div class="sidebar-cta-card">
+          <div class="sc-icon-wrap">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3>Need a Modern Website?</h3>
+          <p>Let HmcxStudio build you a blazing-fast, beautifully designed website that converts visitors into customers.</p>
+          <a href="contact.html" class="btn btn-white"><i class="fas fa-rocket"></i> Get Free Quote</a>
+        </div>
+
+      </aside><!-- /.blog-sidebar -->
+    </div><!-- /.blog-single-grid -->
+  </div>
+</section>
+
+<!-- RELATED POSTS -->
+<section class="related-posts">
+  <div class="container">
+    <div class="related-posts-header reveal">
+      <div class="section-label">Keep Reading</div>
+      <h2>You May Also <span>Like</span></h2>
+    </div>
+    <div class="related-grid">
+
+      <!-- Related 1 -->
+      <div class="blog-card reveal">
+        <div class="blog-thumb pi-bg2">
+          <div class="blog-thumb-placeholder"><i class="fas fa-robot"></i></div>
+          <span class="blog-cat-badge">AI</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span><i class="fas fa-calendar"></i> Feb 3, 2024</span>
+            <span><i class="fas fa-clock"></i> 6 min</span>
+          </div>
+          <h3><a href="blog-single.html">How AI is Revolutionizing Digital Marketing</a></h3>
+          <p>Artificial intelligence is transforming how brands reach audiences — from predictive analytics to hyper-personalized ad campaigns.</p>
+          <a href="blog-single.html" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Related 2 -->
+      <div class="blog-card reveal">
+        <div class="blog-thumb pi-bg5">
+          <div class="blog-thumb-placeholder"><i class="fas fa-pen-nib"></i></div>
+          <span class="blog-cat-badge">Design</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span><i class="fas fa-calendar"></i> Mar 18, 2024</span>
+            <span><i class="fas fa-clock"></i> 5 min</span>
+          </div>
+          <h3><a href="blog-single.html">Logo Design Principles Every Brand Needs</a></h3>
+          <p>Understanding the core principles of effective logo design — simplicity, scalability, timelessness, and emotional resonance.</p>
+          <a href="blog-single.html" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+      <!-- Related 3 -->
+      <div class="blog-card reveal">
+        <div class="blog-thumb pi-bg6">
+          <div class="blog-thumb-placeholder"><i class="fas fa-tachometer-alt"></i></div>
+          <span class="blog-cat-badge">Web Dev</span>
+        </div>
+        <div class="blog-body">
+          <div class="blog-meta">
+            <span><i class="fas fa-calendar"></i> Apr 2, 2024</span>
+            <span><i class="fas fa-clock"></i> 10 min</span>
+          </div>
+          <h3><a href="blog-single.html">Website Speed Optimization: 15 Proven Tips</a></h3>
+          <p>Learn 15 actionable techniques to drastically improve your website's performance scores and user experience.</p>
+          <a href="blog-single.html" class="blog-read-more">Read More <i class="fas fa-arrow-right"></i></a>
+        </div>
+      </div>
+
+    </div><!-- /.related-grid -->
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <h2>Ready to Transform Your<br>Digital Presence?</h2>
+      <p>Let's build something extraordinary together. Get your free consultation today — no obligation.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-white"><i class="fas fa-rocket"></i> Start Your Project</a>
+        <a href="tel:+918005849281" class="btn btn-ghost-white"><i class="fas fa-phone"></i> Call Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="margin-bottom:10px"><img src="assets/img/white logo.png" alt="HMCx Studio" class="logo-img logo-img-white"></a>
+        <p>Your trusted technology partner for digital transformation worldwide. We build, grow, and maintain the digital future of businesses across all industries.</p>
+        <div class="footer-socials">
+          <a href="#" class="fs-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="fs-link"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/hmcx-studio/posts/?feedView=all" class="fs-link"><i class="fab fa-linkedin-in"></i></a>
+          
+          
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="service-detail.html?s=web">Website Development</a></li>
+          <li><a href="service-detail.html?s=maintenance">Website Maintenance</a></li>
+          <li><a href="service-detail.html?s=seo">SEO Optimization</a></li>
+          <li><a href="service-detail.html?s=marketing">Digital Marketing</a></li>
+          <li><a href="service-detail.html?s=ads">Ads Management</a></li>
+          <li><a href="service-detail.html?s=ai">AI Development</a></li>
+          <li><a href="service-detail.html?s=logo">Logo Designing</a></li>
+          <li><a href="service-detail.html?s=graphic">Graphic Designing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#team">Our Team</a></li>
+          <li><a href="projects.html">Portfolio</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Subscribe for the latest digital marketing tips, trends, and insights delivered weekly to your inbox.</p>
+        <div class="newsletter-input">
+          <input type="email" placeholder="Your email address">
+          <button><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <p style="margin-top:16px;font-size:.78rem;color:rgba(255,255,255,.35)">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 HmcxStudio. All rights reserved. Crafted with ❤️ for the digital world.</p>
+      <p><a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-service.html">Terms of Service</a> &nbsp;·&nbsp; <a href="sitemap.html">Sitemap</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+</body>
+</html>
+

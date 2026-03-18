@@ -1,0 +1,11 @@
+# WordPress theme folder (not needed for static site)
+hmcx-theme/
+
+# System files
+.DS_Store
+Thumbs.db
+*.log
+
+# Editor
+.vscode/
+.idea/

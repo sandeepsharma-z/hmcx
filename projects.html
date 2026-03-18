@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Portfolio – HmcxStudio | 500+ Projects Delivered Worldwide</title>
+<meta name="description" content="Explore HmcxStudio's portfolio of 500+ projects across web development, SEO, digital marketing, ads, AI development, and branding for clients worldwide.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  /* ===== PROJECTS PAGE EXTRAS ===== */
+  .projects-hero-decor {
+    position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  }
+  .projects-hero-decor .decor-ring {
+    position: absolute; border-radius: 50%;
+    border: 1px solid rgba(255,255,255,.08);
+  }
+  .projects-hero-decor .decor-ring:nth-child(1) { width: 600px; height: 600px; right: -200px; top: -200px; }
+  .projects-hero-decor .decor-ring:nth-child(2) { width: 400px; height: 400px; right: -50px; top: -50px; border-color: rgba(6,182,212,.2); }
+  .projects-hero-decor .decor-dot {
+    position: absolute; border-radius: 50%; background: rgba(255,255,255,.15);
+    animation: floatSlow 6s ease-in-out infinite;
+  }
+
+  /* Filter Bar */
+  .projects-filter-bar {
+    display: flex; gap: 10px; flex-wrap: wrap;
+    margin-bottom: 48px;
+  }
+  .pf-tab {
+    padding: 10px 22px; border-radius: 50px;
+    border: 1.5px solid var(--blue-pale);
+    background: transparent; color: var(--text-light);
+    font-size: .875rem; font-weight: 600; cursor: pointer;
+    transition: var(--transition); font-family: 'Manrope', sans-serif;
+    display: flex; align-items: center; gap: 7px;
+  }
+  .pf-tab i { font-size: .75rem; }
+  .pf-tab.active, .pf-tab:hover {
+    background: var(--blue-main); color: white; border-color: var(--blue-main);
+    box-shadow: 0 4px 16px rgba(30,86,200,.3);
+  }
+  .pf-tab .tab-count {
+    background: rgba(30,86,200,.12); color: var(--blue-main);
+    padding: 1px 7px; border-radius: 50px; font-size: .72rem;
+    transition: var(--transition);
+  }
+  .pf-tab.active .tab-count, .pf-tab:hover .tab-count {
+    background: rgba(255,255,255,.22); color: white;
+  }
+
+  /* Project Card Extras */
+  .project-card.hidden { display: none; }
+  .project-card {
+    opacity: 0; transform: translateY(20px);
+    animation: cardReveal .5s ease forwards;
+  }
+  @keyframes cardReveal { to { opacity: 1; transform: translateY(0); } }
+
+  .project-excerpt {
+    font-size: .875rem; color: var(--text-light); line-height: 1.65;
+    margin-top: 8px;
+  }
+
+  /* Stats Bar */
+  .portfolio-stats-bar {
+    background: linear-gradient(135deg, var(--blue-deep), var(--blue-dark));
+    padding: 52px 0;
+    position: relative; overflow: hidden;
+  }
+  .portfolio-stats-bar::before {
+    content: ''; position: absolute; inset: 0;
+    background: radial-gradient(circle at 20% 50%, rgba(59,130,246,.15) 0%, transparent 50%),
+                radial-gradient(circle at 80% 50%, rgba(6,182,212,.15) 0%, transparent 50%);
+  }
+  .portfolio-stats-grid {
+    display: grid; grid-template-columns: repeat(4, 1fr);
+    gap: 0; position: relative; z-index: 1;
+  }
+  .ps-stat {
+    text-align: center; padding: 20px;
+    border-right: 1px solid rgba(255,255,255,.1);
+  }
+  .ps-stat:last-child { border-right: none; }
+  .ps-stat .ps-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 2.8rem; font-weight: 800;
+    background: linear-gradient(90deg, #93c5fd, #22d3ee);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text; line-height: 1;
+    width: auto;
+    height: auto;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+    margin: 0;
+    padding: 0;
+    display: block;
+  }
+  .ps-stat .ps-label {
+    color: rgba(255,255,255,.6); font-size: .9rem; margin-top: 8px;
+  }
+  .ps-stat .ps-icon { font-size: 1.6rem; color: rgba(255,255,255,.2); margin-bottom: 14px; }
+
+  /* Client Logos */
+  .client-logos-section { padding: 80px 0; background: var(--white); }
+  .client-logos-header { text-align: center; margin-bottom: 42px; }
+  .client-logos-header .section-label { justify-content: center; }
+  .client-marquee {
+    overflow: hidden;
+    mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 8%, #000 92%, transparent 100%);
+  }
+  .client-marquee-track {
+    display: flex;
+    gap: 18px;
+    width: max-content;
+    animation: clientMarquee 30s linear infinite;
+    will-change: transform;
+  }
+  .client-marquee:hover .client-marquee-track {
+    animation-play-state: paused;
+  }
+  @keyframes clientMarquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(calc(-50% - 9px)); }
+  }
+  .client-logo-box {
+    min-width: 220px;
+    border-radius: 14px;
+    border: 1.5px solid var(--blue-pale);
+    background: var(--off-white);
+    padding: 20px 16px;
+    text-align: center;
+    transition: var(--transition);
+    cursor: default;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+  .client-logo-box:hover {
+    border-color: var(--blue-main);
+    box-shadow: 0 8px 28px rgba(30,86,200,.12);
+    transform: translateY(-4px);
+  }
+  .client-logo-media {
+    width: 100%;
+    height: 62px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .client-logo-media img {
+    max-width: 160px;
+    max-height: 54px;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+  }
+  .client-logo-box span {
+    font-size: .78rem;
+    font-weight: 600;
+    color: var(--text-light);
+    white-space: nowrap;
+    display: none;
+  }
+  .cta-section .cta-inner p {
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+    white-space: normal !important;
+    line-height: 1.7;
+    text-wrap: pretty;
+  }
+
+  /* Empty state */
+  .projects-empty {
+    grid-column: 1 / -1; text-align: center; padding: 60px 20px;
+    display: none;
+  }
+  .projects-empty i { font-size: 3rem; color: var(--blue-pale); margin-bottom: 16px; display: block; }
+  .projects-empty p { color: var(--text-light); font-size: .95rem; }
+
+  @media (max-width: 1024px) {
+    .portfolio-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .ps-stat:nth-child(2) { border-right: none; }
+    .ps-stat:nth-child(3), .ps-stat:nth-child(4) { border-top: 1px solid rgba(255,255,255,.1); }
+    .ps-stat:nth-child(4) { border-right: none; }
+    .client-logo-box { min-width: 200px; }
+  }
+  @media (max-width: 768px) {
+    .projects-filter-bar { gap: 7px; }
+    .pf-tab { padding: 8px 14px; font-size: .82rem; }
+    .portfolio-stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .client-marquee-track { animation-duration: 24s; gap: 14px; }
+    .client-logo-box { min-width: 170px; padding: 16px 12px; }
+    .client-logo-media { height: 52px; }
+    .client-logo-media img { max-width: 130px; max-height: 44px; }
+  }
+  @media (max-width: 480px) {
+    .portfolio-stats-grid { grid-template-columns: 1fr 1fr; }
+    .client-marquee-track { animation-duration: 20s; }
+    .client-logo-box { min-width: 150px; }
+    .client-logo-box span { font-size: .7rem; }
+    .cta-section .cta-inner p { max-width: 92%; }
+  }
+</style>
+</head>
+<body>
+
+<!-- LEFT SOCIALS -->
+<div class="side-social">
+  <span class="side-label">Follow</span>
+  <a href="#" class="ss-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="ss-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="https://www.linkedin.com/company/hmcx-studio/posts/?feedView=all" class="ss-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  
+</div>
+
+<!-- CHATBOT FAB -->
+<a href="javascript:void(0)" class="chatbot-fab" id="chatbotFab"><i class="fas fa-robot"></i></a>
+<div class="chatbot-panel" id="chatbotPanel">
+  <div class="chatbot-head">
+    <div class="chatbot-title"><i class="fas fa-robot"></i> HmcxStudio Assistant</div>
+    <button class="chatbot-close" id="chatbotClose">×</button>
+  </div>
+  <div class="chatbot-body">
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="cb-msg bot">Hi! 👋 How can we help you today?</div>
+    </div>
+    <div class="chatbot-actions">
+      <button class="cb-btn">Services</button>
+      <button class="cb-btn primary">Get Quote</button>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatbotInput" placeholder="Type...">
+      <button class="chatbot-send" id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-btns">
+  <a href="https://wa.me/918005849281" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+  <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="logo"><img src="assets/img/logo.png" alt="HMCx Studio" class="logo-img"></a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-dropdown">
+      <a href="services.html">Services <i class="fas fa-chevron-down" style="font-size:.65rem"></i></a>
+      <div class="nav-dropdown-menu">
+        <a href="service-detail.html?s=web"><i class="fas fa-laptop-code"></i> Website Development</a>
+        <a href="service-detail.html?s=seo"><i class="fas fa-search"></i> SEO Optimization</a>
+        <a href="service-detail.html?s=marketing"><i class="fas fa-bullhorn"></i> Digital Marketing</a>
+        <a href="service-detail.html?s=ads"><i class="fas fa-ad"></i> Ads Management</a>
+        <a href="service-detail.html?s=ai"><i class="fas fa-robot"></i> AI Development</a>
+        <a href="service-detail.html?s=logo"><i class="fas fa-pen-nib"></i> Logo Designing</a>
+      </div>
+    </li>
+    <li><a href="projects.html" class="active">Projects</a></li>
+    <li><a href="industries.html">Industries</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Free Quote</a>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-users"></i> About</a>
+  <a href="services.html"><i class="fas fa-cogs"></i> Services</a>
+  <a href="projects.html"><i class="fas fa-briefcase"></i> Projects</a>
+  <a href="industries.html"><i class="fas fa-industry"></i> Industries</a>
+  <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  <div class="mobile-divider"></div>
+  <a href="contact.html" class="mobile-cta"><i class="fas fa-rocket"></i> Get Free Quote</a>
+</div>
+
+<!-- ===== PAGE HERO ===== -->
+<section class="page-hero">
+  <div class="projects-hero-decor">
+    <div class="decor-ring"></div>
+    <div class="decor-ring"></div>
+    <div class="decor-dot" style="width:8px;height:8px;left:12%;top:35%;animation-delay:.5s"></div>
+    <div class="decor-dot" style="width:5px;height:5px;left:25%;top:60%;animation-delay:1.2s"></div>
+    <div class="decor-dot" style="width:10px;height:10px;left:60%;top:25%;animation-delay:.8s"></div>
+    <div class="decor-dot" style="width:6px;height:6px;left:75%;top:65%;animation-delay:2s"></div>
+  </div>
+  <div class="container">
+    <div class="page-hero-content">
+      <nav class="breadcrumb" aria-label="Breadcrumb">
+        <a href="index.html">Home</a>
+        <span><i class="fas fa-chevron-right" style="font-size:.65rem"></i></span>
+        <span class="current">Projects</span>
+      </nav>
+      <h1>Our <span>Portfolio</span></h1>
+      <p>500+ successful projects delivered across 20+ industries worldwide. From cutting-edge web platforms to performance marketing campaigns — every project tells a growth story.</p>
+      <div class="page-hero-tags">
+        <span class="page-hero-tag"><i class="fas fa-layer-group" style="margin-right:5px"></i> 500+ Projects</span>
+        <span class="page-hero-tag"><i class="fas fa-industry" style="margin-right:5px"></i> 20+ Industries</span>
+        <span class="page-hero-tag"><i class="fas fa-globe" style="margin-right:5px"></i> Global Clients</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MARQUEE ===== -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="marquee-item"><i class="fas fa-trophy"></i>Award-Winning Work</div>
+    <div class="marquee-item"><i class="fas fa-chart-line"></i>Proven Results</div>
+    <div class="marquee-item"><i class="fas fa-code"></i>Clean Code</div>
+    <div class="marquee-item"><i class="fas fa-star"></i>5-Star Rated</div>
+    <div class="marquee-item"><i class="fas fa-rocket"></i>On-Time Delivery</div>
+    <div class="marquee-item"><i class="fas fa-shield-alt"></i>Trusted Worldwide</div>
+    <div class="marquee-item"><i class="fas fa-handshake"></i>Long-Term Partners</div>
+    <div class="marquee-item"><i class="fas fa-globe"></i>Global Reach</div>
+    <div class="marquee-item"><i class="fas fa-trophy"></i>Award-Winning Work</div>
+    <div class="marquee-item"><i class="fas fa-chart-line"></i>Proven Results</div>
+    <div class="marquee-item"><i class="fas fa-code"></i>Clean Code</div>
+    <div class="marquee-item"><i class="fas fa-star"></i>5-Star Rated</div>
+    <div class="marquee-item"><i class="fas fa-rocket"></i>On-Time Delivery</div>
+    <div class="marquee-item"><i class="fas fa-shield-alt"></i>Trusted Worldwide</div>
+    <div class="marquee-item"><i class="fas fa-handshake"></i>Long-Term Partners</div>
+    <div class="marquee-item"><i class="fas fa-globe"></i>Global Reach</div>
+  </div>
+</div>
+
+<!-- ===== PROJECTS SECTION ===== -->
+<section class="projects-section" id="portfolio">
+  <div class="container">
+    <div style="display:flex;align-items:flex-end;justify-content:space-between;margin-bottom:36px;flex-wrap:wrap;gap:20px">
+      <div>
+        <div class="section-label">What We've Built</div>
+        <h2 class="section-title">Browse Our <span>Work</span></h2>
+      </div>
+      <p class="section-subtitle" style="max-width:380px;margin:0">
+        Filter by service type to explore the projects most relevant to your needs.
+      </p>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="projects-filter-bar" id="filterBar">
+      <button class="pf-tab active" data-filter="all">
+        <i class="fas fa-th-large"></i> All <span class="tab-count">9</span>
+      </button>
+      <button class="pf-tab" data-filter="web">
+        <i class="fas fa-laptop-code"></i> Web Dev <span class="tab-count">3</span>
+      </button>
+      <button class="pf-tab" data-filter="seo">
+        <i class="fas fa-search"></i> SEO <span class="tab-count">1</span>
+      </button>
+      <button class="pf-tab" data-filter="marketing">
+        <i class="fas fa-bullhorn"></i> Digital Marketing <span class="tab-count">1</span>
+      </button>
+      <button class="pf-tab" data-filter="ads">
+        <i class="fas fa-ad"></i> Ads <span class="tab-count">1</span>
+      </button>
+      <button class="pf-tab" data-filter="design">
+        <i class="fas fa-palette"></i> Design &amp; Branding <span class="tab-count">2</span>
+      </button>
+      <button class="pf-tab" data-filter="ai">
+        <i class="fas fa-robot"></i> AI <span class="tab-count">1</span>
+      </button>
+    </div>
+
+    <!-- Projects Grid -->
+    <div class="projects-grid" id="projectsGrid">
+
+      <!-- 1. LuxeCart -->
+      <div class="project-card reveal" data-cat="web">
+        <div class="project-thumb pi-bg1">
+          <div class="project-thumb-placeholder">
+            <i class="fas fa-store"></i>
+          </div>
+          <span class="project-cat-badge">E-Commerce</span>
+          <div class="project-thumb-overlay">
+            <a href="project-detail.html?p=luxecart"><i class="fas fa-eye"></i> View Case Study</a>
+            <a href="project-detail.html?p=luxecart"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3><a href="project-detail.html?p=luxecart">LuxeCart Premium Shopping Platform</a></h3>
+          <p class="project-excerpt">A high-performance luxury e-commerce platform built with React and WooCommerce, deployed on AWS with auto-scaling for global traffic.</p>
+          <div class="project-meta">
+            <span><i class="fas fa-user"></i> LuxeCart Inc.</span>
+            <span><i class="fas fa-calendar-alt"></i> 2024</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="tech-badge">React</span>
+            <span class="tech-badge">WooCommerce</span>
+            <span class="tech-badge">AWS</span>
+          </div>
+          <a href="project-detail.html?p=luxecart" class="project-link">
+            View Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 2. FinEdge -->
+      <div class="project-card reveal" data-cat="seo" style="animation-delay:.08s">
+        <div class="project-thumb pi-bg2">
+          <div class="project-thumb-placeholder">
+            <i class="fas fa-chart-line"></i>
+          </div>
+          <span class="project-cat-badge">SEO</span>
+          <div class="project-thumb-overlay">
+            <a href="project-detail.html?p=finedge"><i class="fas fa-eye"></i> View Case Study</a>
+            <a href="project-detail.html?p=finedge"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3><a href="project-detail.html?p=finedge">FinEdge 400% Traffic Growth</a></h3>
+          <p class="project-excerpt">Comprehensive SEO overhaul for a fintech brand — technical fixes, content strategy, and authority link building drove 400% organic traffic growth in 6 months.</p>
+          <div class="project-meta">
+            <span><i class="fas fa-user"></i> FinEdge Capital</span>
+            <span><i class="fas fa-calendar-alt"></i> 2024</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="tech-badge">Google SEO</span>
+            <span class="tech-badge">Analytics</span>
+          </div>
+          <a href="project-detail.html?p=finedge" class="project-link">
+            View Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 3. GreenRoot -->
+      <div class="project-card reveal" data-cat="design" style="animation-delay:.16s">
+        <div class="project-thumb pi-bg3">
+          <div class="project-thumb-placeholder">
+            <i class="fas fa-leaf"></i>
+          </div>
+          <span class="project-cat-badge">Design</span>
+          <div class="project-thumb-overlay">
+            <a href="project-detail.html?p=greenroot"><i class="fas fa-eye"></i> View Case Study</a>
+            <a href="project-detail.html?p=greenroot"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3><a href="project-detail.html?p=greenroot">GreenRoot Brand Identity</a></h3>
+          <p class="project-excerpt">Complete brand identity system for an organic wellness startup — logo, color palette, typography, brand guidelines, and print collateral all crafted in Figma and Adobe.</p>
+          <div class="project-meta">
+            <span><i class="fas fa-user"></i> GreenRoot Organics</span>
+            <span><i class="fas fa-calendar-alt"></i> 2023</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="tech-badge">Figma</span>
+            <span class="tech-badge">Adobe Suite</span>
+          </div>
+          <a href="project-detail.html?p=greenroot" class="project-link">
+            View Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 4. EduSpark -->
+      <div class="project-card reveal" data-cat="web" style="animation-delay:.24s">
+        <div class="project-thumb pi-bg4">
+          <div class="project-thumb-placeholder">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <span class="project-cat-badge">Web Dev</span>
+          <div class="project-thumb-overlay">
+            <a href="project-detail.html?p=eduspark"><i class="fas fa-eye"></i> View Case Study</a>
+            <a href="project-detail.html?p=eduspark"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3><a href="project-detail.html?p=eduspark">EduSpark Learning Platform</a></h3>
+          <p class="project-excerpt">Full-stack LMS platform with live classes, course management, student dashboards, and payment integration — built for scale with React and Node.js.</p>
+          <div class="project-meta">
+            <span><i class="fas fa-user"></i> EduSpark Ltd.</span>
+            <span><i class="fas fa-calendar-alt"></i> 2024</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="tech-badge">React</span>
+            <span class="tech-badge">Node.js</span>
+          </div>
+          <a href="project-detail.html?p=eduspark" class="project-link">
+            View Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 5. RealNest -->
+      <div class="project-card reveal" data-cat="ads" style="animation-delay:.32s">
+        <div class="project-thumb pi-bg5">
+          <div class="project-thumb-placeholder">
+            <i class="fas fa-ad"></i>
+          </div>
+          <span class="project-cat-badge">Ads</span>
+          <div class="project-thumb-overlay">
+            <a href="project-detail.html?p=realnest"><i class="fas fa-eye"></i> View Case Study</a>
+            <a href="project-detail.html?p=realnest"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3><a href="project-detail.html?p=realnest">RealNest 5x ROAS Campaign</a></h3>
+          <p class="project-excerpt">Multi-channel paid ads strategy for a real estate platform. Google Ads + Meta Ads delivered a 5x return on ad spend with highly targeted audience segmentation.</p>
+          <div class="project-meta">
+            <span><i class="fas fa-user"></i> RealNest Properties</span>
+            <span><i class="fas fa-calendar-alt"></i> 2024</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="tech-badge">Google Ads</span>
+            <span class="tech-badge">Meta Ads</span>
+          </div>
+          <a href="project-detail.html?p=realnest" class="project-link">
+            View Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 6. BloomBotanica -->
+      <div class="project-card reveal" data-cat="design" style="animation-delay:.4s">
+        <div class="project-thumb pi-bg6">
+          <div class="project-thumb-placeholder">
+            <i class="fas fa-spa"></i>
+          </div>
+          <span class="project-cat-badge">Design</span>
+          <div class="project-thumb-overlay">
+            <a href="project-detail.html?p=bloombotanica"><i class="fas fa-eye"></i> View Case Study</a>
+            <a href="project-detail.html?p=bloombotanica"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3><a href="project-detail.html?p=bloombotanica">BloomBotanica Visual Campaign</a></h3>
+          <p class="project-excerpt">Complete visual campaign suite for a luxury botanical skincare brand — social media creatives, ad banners, email templates, and packaging design using Adobe Suite.</p>
+          <div class="project-meta">
+            <span><i class="fas fa-user"></i> Bloom Botanica Co.</span>
+            <span><i class="fas fa-calendar-alt"></i> 2023</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="tech-badge">Adobe Suite</span>
+            <span class="tech-badge">Figma</span>
+          </div>
+          <a href="project-detail.html?p=bloombotanica" class="project-link">
+            View Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 7. SmartBot AI -->
+      <div class="project-card reveal" data-cat="ai" style="animation-delay:.48s">
+        <div class="project-thumb pi-bg1">
+          <div class="project-thumb-placeholder">
+            <i class="fas fa-robot"></i>
+          </div>
+          <span class="project-cat-badge">AI</span>
+          <div class="project-thumb-overlay">
+            <a href="project-detail.html?p=aichatbot"><i class="fas fa-eye"></i> View Case Study</a>
+            <a href="project-detail.html?p=aichatbot"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3><a href="project-detail.html?p=aichatbot">SmartBot AI Customer Service</a></h3>
+          <p class="project-excerpt">GPT-4 powered customer service chatbot integrated into an e-commerce ecosystem — handles 80% of support queries autonomously with human escalation fallback.</p>
+          <div class="project-meta">
+            <span><i class="fas fa-user"></i> TechVentures India</span>
+            <span><i class="fas fa-calendar-alt"></i> 2024</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="tech-badge">OpenAI</span>
+            <span class="tech-badge">Python</span>
+          </div>
+          <a href="project-detail.html?p=aichatbot" class="project-link">
+            View Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 8. TechPulse -->
+      <div class="project-card reveal" data-cat="marketing" style="animation-delay:.56s">
+        <div class="project-thumb pi-bg2">
+          <div class="project-thumb-placeholder">
+            <i class="fas fa-bullhorn"></i>
+          </div>
+          <span class="project-cat-badge">Marketing</span>
+          <div class="project-thumb-overlay">
+            <a href="project-detail.html?p=techpulse"><i class="fas fa-eye"></i> View Case Study</a>
+            <a href="project-detail.html?p=techpulse"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3><a href="project-detail.html?p=techpulse">TechPulse Digital Campaign</a></h3>
+          <p class="project-excerpt">360° digital marketing campaign combining social media strategy, email drip sequences, and influencer partnerships — grew TechPulse's subscriber base by 250% in 90 days.</p>
+          <div class="project-meta">
+            <span><i class="fas fa-user"></i> TechPulse Media</span>
+            <span><i class="fas fa-calendar-alt"></i> 2023</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="tech-badge">Social Media</span>
+            <span class="tech-badge">Email</span>
+          </div>
+          <a href="project-detail.html?p=techpulse" class="project-link">
+            View Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- 9. MediaHub -->
+      <div class="project-card reveal" data-cat="web" style="animation-delay:.64s">
+        <div class="project-thumb pi-bg3">
+          <div class="project-thumb-placeholder">
+            <i class="fas fa-newspaper"></i>
+          </div>
+          <span class="project-cat-badge">Web Dev</span>
+          <div class="project-thumb-overlay">
+            <a href="project-detail.html?p=mediahub"><i class="fas fa-eye"></i> View Case Study</a>
+            <a href="project-detail.html?p=mediahub"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+          </div>
+        </div>
+        <div class="project-body">
+          <h3><a href="project-detail.html?p=mediahub">MediaHub News Portal</a></h3>
+          <p class="project-excerpt">Feature-rich digital news portal on WordPress with custom theme, real-time feeds, ad slots, paywall integration, and AMP support for blazing-fast mobile performance.</p>
+          <div class="project-meta">
+            <span><i class="fas fa-user"></i> MediaHub Group</span>
+            <span><i class="fas fa-calendar-alt"></i> 2023</span>
+          </div>
+          <div style="margin-top:12px;display:flex;gap:6px;flex-wrap:wrap">
+            <span class="tech-badge">WordPress</span>
+            <span class="tech-badge">Custom</span>
+          </div>
+          <a href="project-detail.html?p=mediahub" class="project-link">
+            View Case Study <i class="fas fa-arrow-right"></i>
+          </a>
+        </div>
+      </div>
+
+      <!-- Empty state -->
+      <div class="projects-empty" id="projectsEmpty">
+        <i class="fas fa-folder-open"></i>
+        <p>No projects found for this category. <a href="#" onclick="resetFilter()" style="color:var(--blue-main)">View all projects</a></p>
+      </div>
+
+    </div><!-- /projects-grid -->
+  </div>
+</section>
+
+<!-- ===== STATS BAR ===== -->
+<div class="portfolio-stats-bar">
+  <div class="container">
+    <div class="portfolio-stats-grid">
+      <div class="ps-stat">
+        <div class="ps-icon"><i class="fas fa-project-diagram"></i></div>
+        <div class="ps-num">500+</div>
+        <div class="ps-label">Projects Delivered</div>
+      </div>
+      <div class="ps-stat">
+        <div class="ps-icon"><i class="fas fa-smile"></i></div>
+        <div class="ps-num">200+</div>
+        <div class="ps-label">Happy Clients</div>
+      </div>
+      <div class="ps-stat">
+        <div class="ps-icon"><i class="fas fa-industry"></i></div>
+        <div class="ps-num">20+</div>
+        <div class="ps-label">Industries Served</div>
+      </div>
+      <div class="ps-stat">
+        <div class="ps-icon"><i class="fas fa-star"></i></div>
+        <div class="ps-num">98%</div>
+        <div class="ps-label">Client Satisfaction</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ===== CLIENT LOGOS ===== -->
+<section class="client-logos-section">
+  <div class="container">
+    <div class="client-logos-header">
+      <div class="section-label">Trusted By</div>
+      <h2 class="section-title">Brands That <span>Believe In Us</span></h2>
+      <p class="section-subtitle" style="margin:0 auto">Proud to be the digital partner of choice for industry leaders and fast-growing startups worldwide.</p>
+    </div>
+    <div class="client-marquee" aria-label="Client logos marquee">
+      <div class="client-marquee-track">
+        <div class="client-logo-box">
+          <div class="client-logo-media"><img src="assets/img/client-logos/pier9-logo.png" alt="Pier9"></div>
+          <span>Pier9</span>
+        </div>
+        <div class="client-logo-box">
+          <div class="client-logo-media"><img src="assets/img/client-logos/sim-elem-2.png" alt="SIM ELEM"></div>
+          <span>SIM ELEM</span>
+        </div>
+        <div class="client-logo-box">
+          <div class="client-logo-media"><img src="assets/img/client-logos/transparent.png" alt="Transparent Brand"></div>
+          <span>Transparent Brand</span>
+        </div>
+        <div class="client-logo-box">
+          <div class="client-logo-media"><img src="assets/img/client-logos/whatsapp-logo.png" alt="WhatsApp Brand"></div>
+          <span>WhatsApp Brand</span>
+        </div>
+        <div class="client-logo-box">
+          <div class="client-logo-media"><img src="assets/img/client-logos/beauty-bree-logo-01.png" alt="Beauty Bree"></div>
+          <span>Beauty Bree</span>
+        </div>
+        <div class="client-logo-box">
+          <div class="client-logo-media"><img src="assets/img/client-logos/amore-pizza-logo-3-locations-03.png" alt="Amore Pizza"></div>
+          <span>Amore Pizza</span>
+        </div>
+        <div class="client-logo-box">
+          <div class="client-logo-media"><img src="assets/img/client-logos/received-538508791431154-1-removebg-preview.webp" alt="Received Brand"></div>
+          <span>Received Brand</span>
+        </div>
+
+        <div class="client-logo-box" aria-hidden="true">
+          <div class="client-logo-media"><img src="assets/img/client-logos/pier9-logo.png" alt=""></div>
+          <span>Pier9</span>
+        </div>
+        <div class="client-logo-box" aria-hidden="true">
+          <div class="client-logo-media"><img src="assets/img/client-logos/sim-elem-2.png" alt=""></div>
+          <span>SIM ELEM</span>
+        </div>
+        <div class="client-logo-box" aria-hidden="true">
+          <div class="client-logo-media"><img src="assets/img/client-logos/transparent.png" alt=""></div>
+          <span>Transparent Brand</span>
+        </div>
+        <div class="client-logo-box" aria-hidden="true">
+          <div class="client-logo-media"><img src="assets/img/client-logos/whatsapp-logo.png" alt=""></div>
+          <span>WhatsApp Brand</span>
+        </div>
+        <div class="client-logo-box" aria-hidden="true">
+          <div class="client-logo-media"><img src="assets/img/client-logos/beauty-bree-logo-01.png" alt=""></div>
+          <span>Beauty Bree</span>
+        </div>
+        <div class="client-logo-box" aria-hidden="true">
+          <div class="client-logo-media"><img src="assets/img/client-logos/amore-pizza-logo-3-locations-03.png" alt=""></div>
+          <span>Amore Pizza</span>
+        </div>
+        <div class="client-logo-box" aria-hidden="true">
+          <div class="client-logo-media"><img src="assets/img/client-logos/received-538508791431154-1-removebg-preview.webp" alt=""></div>
+          <span>Received Brand</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CTA BANNER ===== -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <h2>Have a Project in Mind?<br>Let's Build It Together.</h2>
+      <p>Join 200+ businesses that trust HmcxStudio to deliver exceptional digital results. Get your free strategy session today.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-white"><i class="fas fa-rocket"></i> Start Your Project</a>
+        <a href="tel:+918005849281" class="btn btn-ghost-white"><i class="fas fa-phone"></i> Call Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="margin-bottom:10px"><img src="assets/img/white logo.png" alt="HMCx Studio" class="logo-img logo-img-white"></a>
+        <p>Your trusted technology partner for digital transformation worldwide. We build, grow, and maintain the digital future of businesses across all industries.</p>
+        <div class="footer-socials">
+          <a href="#" class="fs-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="fs-link"><i class="fab fa-instagram"></i></a>
+          <a href="https://www.linkedin.com/company/hmcx-studio/posts/?feedView=all" class="fs-link"><i class="fab fa-linkedin-in"></i></a>
+          
+          
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="service-detail.html?s=web">Website Development</a></li>
+          <li><a href="service-detail.html?s=maintenance">Website Maintenance</a></li>
+          <li><a href="service-detail.html?s=seo">SEO Optimization</a></li>
+          <li><a href="service-detail.html?s=marketing">Digital Marketing</a></li>
+          <li><a href="service-detail.html?s=ads">Ads Management</a></li>
+          <li><a href="service-detail.html?s=ai">AI Development</a></li>
+          <li><a href="service-detail.html?s=logo">Logo Designing</a></li>
+          <li><a href="service-detail.html?s=graphic">Graphic Designing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#team">Our Team</a></li>
+          <li><a href="projects.html">Portfolio</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Subscribe for the latest digital marketing tips, trends, and insights delivered weekly to your inbox.</p>
+        <div class="newsletter-input">
+          <input type="email" placeholder="Your email address">
+          <button><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <p style="margin-top:16px;font-size:.78rem;color:rgba(255,255,255,.35)">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 HmcxStudio. All rights reserved. Crafted with ❤️ for the digital world.</p>
+      <p><a href="privacy-policy.html">Privacy Policy</a> &nbsp;·&nbsp; <a href="terms-of-service.html">Terms of Service</a> &nbsp;·&nbsp; <a href="sitemap.html">Sitemap</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+  // ===== PORTFOLIO FILTER =====
+  (function() {
+    var tabs = document.querySelectorAll('.pf-tab');
+    var cards = document.querySelectorAll('.project-card[data-cat]');
+    var emptyState = document.getElementById('projectsEmpty');
+
+    function filterProjects(filter) {
+      var visible = 0;
+      cards.forEach(function(card, i) {
+        var cat = card.getAttribute('data-cat');
+        var show = filter === 'all' || cat === filter;
+        if (show) {
+          card.classList.remove('hidden');
+          card.style.animationDelay = (visible * 0.08) + 's';
+          card.style.animation = 'none';
+          // Force reflow
+          card.offsetHeight;
+          card.style.animation = '';
+          visible++;
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+      if (emptyState) {
+        emptyState.style.display = visible === 0 ? 'block' : 'none';
+      }
+    }
+
+    tabs.forEach(function(tab) {
+      tab.addEventListener('click', function() {
+        tabs.forEach(function(t) { t.classList.remove('active'); });
+        tab.classList.add('active');
+        filterProjects(tab.getAttribute('data-filter'));
+      });
+    });
+
+    // Initial state — all visible
+    filterProjects('all');
+  })();
+
+  function resetFilter() {
+    document.querySelector('.pf-tab[data-filter="all"]').click();
+  }
+</script>
+</body>
+</html>
+

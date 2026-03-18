@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us – HmcxStudio Digital Agency</title>
+  <meta name="description" content="Get in touch with HmcxStudio. Free consultation, 24-hour response guarantee. Let's build something great together.">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome 6.5.0 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+
+  <style>
+    /* ── FAQ Accordion ── */
+    .faq-section { padding: 80px 0; background: var(--off-white); }
+    .faq-item { background: white; border: 1px solid var(--blue-pale); border-radius: 16px; margin-bottom: 12px; overflow: hidden; transition: all .3s; }
+    .faq-item.open { border-color: var(--blue-main); box-shadow: 0 4px 20px rgba(30,86,200,.1); }
+    .faq-question { padding: 20px 24px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; font-size: .97rem; color: var(--text-dark); }
+    .faq-question i { color: var(--blue-main); transition: transform .3s; font-size: .85rem; }
+    .faq-item.open .faq-question i { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height .4s ease; }
+    .faq-answer p { padding: 0 24px 20px; color: var(--text-light); font-size: .93rem; line-height: 1.7; margin: 0; }
+
+    /* ── Quick Contact Cards ── */
+    .quick-contact { padding: 56px 0 0; }
+    .quick-contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .qc-card { background: white; border: 1px solid var(--blue-pale); border-radius: 20px; padding: 28px; text-align: center; transition: var(--transition); text-decoration: none; display: flex; flex-direction: column; align-items: center; gap: 14px; }
+    .qc-card:hover { border-color: var(--blue-main); box-shadow: 0 8px 32px rgba(30,86,200,.12); transform: translateY(-4px); }
+    .qc-icon { width: 64px; height: 64px; border-radius: 50%; background: linear-gradient(135deg, var(--blue-main), var(--blue-light)); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; color: white; flex-shrink: 0; }
+    .qc-label { font-size: .8rem; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--blue-main); }
+    .qc-value { font-size: 1rem; font-weight: 600; color: var(--text-dark); }
+
+    /* ── Contact Section ── */
+    .contact-section { padding: 80px 0; }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.3fr; gap: 56px; align-items: start; }
+
+    /* Contact Info */
+    .contact-info {}
+    .contact-detail { display: flex; align-items: flex-start; gap: 18px; padding: 20px; background: white; border: 1px solid var(--blue-pale); border-radius: 16px; margin-bottom: 16px; transition: var(--transition); }
+    .contact-detail:hover { border-color: var(--blue-main); box-shadow: 0 4px 20px rgba(30,86,200,.08); }
+    .cd-icon { width: 48px; height: 48px; border-radius: 12px; background: linear-gradient(135deg, var(--blue-main), var(--blue-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; flex-shrink: 0; }
+    .cd-body { flex: 1; }
+    .cd-label { font-size: .75rem; font-weight: 700; text-transform: uppercase; letter-spacing: .08em; color: var(--blue-main); margin-bottom: 4px; }
+    .cd-value { font-size: .97rem; font-weight: 600; color: var(--text-dark); line-height: 1.5; }
+    .cd-value a { color: inherit; text-decoration: none; transition: color .2s; }
+    .cd-value a:hover { color: var(--blue-main); }
+
+    .contact-socials { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 28px; }
+    .cs-link { width: 44px; height: 44px; border-radius: 12px; background: white; border: 1px solid var(--blue-pale); display: flex; align-items: center; justify-content: center; color: var(--text-light); font-size: .95rem; transition: var(--transition); text-decoration: none; }
+    .cs-link:hover { background: var(--blue-main); border-color: var(--blue-main); color: white; transform: translateY(-3px); }
+
+    /* Contact Form */
+    .contact-form-wrap { background: white; border: 1px solid var(--blue-pale); border-radius: 24px; padding: 40px; box-shadow: 0 8px 40px rgba(30,86,200,.06); }
+    .contact-form-wrap h3 { font-family: 'Space Grotesk', sans-serif; font-size: 1.5rem; font-weight: 700; color: var(--text-dark); margin-bottom: 6px; }
+    .contact-form-wrap .form-subtitle { color: var(--text-light); font-size: .9rem; margin-bottom: 28px; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .form-group { display: flex; flex-direction: column; gap: 7px; margin-bottom: 16px; }
+    .form-group label { font-size: .82rem; font-weight: 600; color: var(--text-dark); }
+    .form-group input,
+    .form-group select,
+    .form-group textarea { padding: 12px 16px; border: 1.5px solid var(--blue-pale); border-radius: 12px; font-family: 'Manrope', sans-serif; font-size: .9rem; color: var(--text-dark); background: var(--off-white); transition: border-color .2s, box-shadow .2s; outline: none; width: 100%; box-sizing: border-box; }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus { border-color: var(--blue-main); box-shadow: 0 0 0 4px rgba(30,86,200,.08); background: white; }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select { appearance: none; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%236b7280' d='M6 8L1 3h10z'/%3E%3C/svg%3E"); background-repeat: no-repeat; background-position: right 14px center; cursor: pointer; }
+    .form-submit-btn { width: 100%; padding: 15px 24px; background: linear-gradient(135deg, var(--blue-main), var(--blue-light)); color: white; border: none; border-radius: 12px; font-family: 'Space Grotesk', sans-serif; font-size: 1rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 10px; transition: var(--transition); margin-top: 8px; }
+    .form-submit-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(30,86,200,.3); }
+    .form-submit-btn i { font-size: .9rem; }
+
+    /* ── Map Section ── */
+    .map-section { padding: 80px 0; background: var(--off-white); }
+    .map-section .section-header { margin-bottom: 36px; }
+    .map-wrap { border-radius: 24px; overflow: hidden; border: 1px solid var(--blue-pale); box-shadow: 0 8px 40px rgba(30,86,200,.08); }
+    .map-placeholder { height: 380px; background: linear-gradient(135deg, #e8f0fe 0%, #f0f7ff 50%, #e8f0fe 100%); display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 16px; text-align: center; }
+    .map-pin-icon { width: 80px; height: 80px; border-radius: 50%; background: linear-gradient(135deg, var(--blue-main), var(--blue-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.8rem; box-shadow: 0 8px 32px rgba(30,86,200,.3); }
+    .map-address { font-size: 1rem; font-weight: 600; color: var(--text-dark); }
+    .map-open-link { display: inline-flex; align-items: center; gap: 8px; padding: 10px 22px; background: var(--blue-main); color: white; border-radius: 10px; font-size: .88rem; font-weight: 600; text-decoration: none; transition: var(--transition); }
+    .map-open-link:hover { background: var(--blue-dark); transform: translateY(-2px); box-shadow: 0 6px 20px rgba(30,86,200,.25); }
+
+    /* ── Why Contact Us ── */
+    .why-contact { padding: 80px 0; }
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
+    .why-card { background: white; border: 1px solid var(--blue-pale); border-radius: 20px; padding: 36px 28px; text-align: center; transition: var(--transition); }
+    .why-card:hover { border-color: var(--blue-main); box-shadow: 0 8px 32px rgba(30,86,200,.1); transform: translateY(-4px); }
+    .why-icon { width: 68px; height: 68px; border-radius: 50%; background: linear-gradient(135deg, var(--blue-main), var(--blue-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin: 0 auto 20px; }
+    .why-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
+    .why-card p { font-size: .9rem; color: var(--text-light); line-height: 1.65; margin: 0; }
+
+    /* ── Responsive ── */
+    @media (max-width: 900px) {
+      .quick-contact-grid { grid-template-columns: 1fr; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .why-grid { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 600px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-wrap { padding: 24px; }
+      .why-grid { grid-template-columns: 1fr; }
+      .quick-contact { padding: 36px 0 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Chatbot FAB -->
+  <a href="javascript:void(0)" class="chatbot-fab" id="chatbotFab"><i class="fas fa-robot"></i></a>
+  <div class="chatbot-panel" id="chatbotPanel">
+    <div class="chatbot-head">
+      <div class="chatbot-title"><i class="fas fa-robot"></i> HmcxStudio Assistant</div>
+      <button class="chatbot-close" id="chatbotClose">×</button>
+    </div>
+    <div class="chatbot-body">
+      <div class="chatbot-messages" id="chatbotMessages">
+        <div class="cb-msg bot">Hi! How can we help?</div>
+      </div>
+      <div class="chatbot-actions">
+        <button class="cb-btn">Services</button>
+        <button class="cb-btn primary">Get Quote</button>
+      </div>
+      <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Type...">
+        <button class="chatbot-send" id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Floating Buttons -->
+  <div class="float-btns">
+    <a href="https://wa.me/919999999999" target="_blank" class="whatsapp-btn"><i class="fab fa-whatsapp"></i></a>
+    <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
+  </div>
+
+  <!-- Side Social -->
+  <div class="side-social">
+    <span class="side-label">Follow</span>
+    <a href="#" class="ss-link"><i class="fab fa-facebook-f"></i></a>
+    <a href="#" class="ss-link"><i class="fab fa-instagram"></i></a>
+    <a href="#" class="ss-link"><i class="fab fa-linkedin-in"></i></a>
+    <a href="#" class="ss-link"><i class="fab fa-twitter"></i></a>
+  </div>
+
+  <!-- Navbar -->
+  <nav id="navbar">
+    <a href="index.html" class="logo">
+      <div class="logo-icon">H</div>
+      <span class="logo-text">Hmcx<span>Studio</span></span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li class="nav-dropdown">
+        <a href="services.html">Services <i class="fas fa-chevron-down" style="font-size:.65rem"></i></a>
+        <div class="nav-dropdown-menu">
+          <a href="service-detail.html?s=web"><i class="fas fa-laptop-code"></i> Website Development</a>
+          <a href="service-detail.html?s=seo"><i class="fas fa-search"></i> SEO Optimization</a>
+          <a href="service-detail.html?s=marketing"><i class="fas fa-bullhorn"></i> Digital Marketing</a>
+          <a href="service-detail.html?s=ads"><i class="fas fa-ad"></i> Ads Management</a>
+          <a href="service-detail.html?s=ai"><i class="fas fa-robot"></i> AI Development</a>
+          <a href="service-detail.html?s=logo"><i class="fas fa-pen-nib"></i> Logo Designing</a>
+        </div>
+      </li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="industries.html">Industries</a></li>
+      <li><a href="blog.html">Blog</a></li>
+      <li><a href="contact.html" class="active">Contact</a></li>
+    </ul>
+    <a href="contact.html" class="nav-cta">Get Free Quote</a>
+    <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+  </nav>
+
+  <!-- Mobile Nav -->
+  <div class="mobile-nav" id="mobileNav">
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="about.html"><i class="fas fa-users"></i> About</a>
+    <a href="services.html"><i class="fas fa-cogs"></i> Services</a>
+    <a href="projects.html"><i class="fas fa-briefcase"></i> Projects</a>
+    <a href="industries.html"><i class="fas fa-industry"></i> Industries</a>
+    <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+    <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+    <div class="mobile-divider"></div>
+    <a href="contact.html" class="mobile-cta"><i class="fas fa-rocket"></i> Get Free Quote</a>
+  </div>
+
+  <!-- ═══════════════════════════════════
+       PAGE HERO
+  ═══════════════════════════════════ -->
+  <section class="page-hero">
+    <div class="container">
+      <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Contact</span>
+      </div>
+      <h1>Let's <span>Work Together</span></h1>
+      <p>Have a project in mind? We'd love to hear about it. Get in touch and we'll respond within 24 hours.</p>
+      <div class="hero-tags">
+        <span class="hero-tag"><i class="fas fa-check-circle"></i> Free Consultation</span>
+        <span class="hero-tag"><i class="fas fa-clock"></i> 24h Response</span>
+        <span class="hero-tag"><i class="fas fa-globe"></i> Global Projects</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       QUICK CONTACT CARDS
+  ═══════════════════════════════════ -->
+  <section class="quick-contact">
+    <div class="container">
+      <div class="quick-contact-grid">
+
+        <a href="tel:+919999999999" class="qc-card">
+          <div class="qc-icon"><i class="fas fa-phone-alt"></i></div>
+          <div class="qc-label">Call Us</div>
+          <div class="qc-value">+91 99999 99999</div>
+        </a>
+
+        <a href="mailto:hello@hmcxstudio.in" class="qc-card">
+          <div class="qc-icon"><i class="fas fa-envelope"></i></div>
+          <div class="qc-label">Email Us</div>
+          <div class="qc-value">hello@hmcxstudio.in</div>
+        </a>
+
+        <a href="https://wa.me/919999999999" target="_blank" class="qc-card">
+          <div class="qc-icon"><i class="fab fa-whatsapp"></i></div>
+          <div class="qc-label">Chat on WhatsApp</div>
+          <div class="qc-value">Available 24/7</div>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       MAIN CONTACT SECTION
+  ═══════════════════════════════════ -->
+  <section class="contact-section">
+    <div class="container">
+      <div class="contact-grid">
+
+        <!-- LEFT: Contact Info -->
+        <div class="contact-info">
+          <div class="section-label">Get In Touch</div>
+          <h2 class="section-title">Let's Talk About<br><span>Your Project</span></h2>
+          <p class="section-subtitle">Whether you have a concrete idea or just a spark of inspiration, our team is ready to listen, advise, and build the digital solution that moves your business forward.</p>
+
+          <div class="contact-details" style="margin-top:32px;">
+
+            <div class="contact-detail">
+              <div class="cd-icon"><i class="fas fa-map-marker-alt"></i></div>
+              <div class="cd-body">
+                <div class="cd-label">Our Office</div>
+                <div class="cd-value">C-42, Sector 63, Noida<br>Uttar Pradesh – 201301, India</div>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="cd-icon"><i class="fas fa-phone-alt"></i></div>
+              <div class="cd-body">
+                <div class="cd-label">Phone</div>
+                <div class="cd-value"><a href="tel:+919999999999">+91 99999 99999</a></div>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="cd-icon"><i class="fas fa-envelope"></i></div>
+              <div class="cd-body">
+                <div class="cd-label">Email</div>
+                <div class="cd-value"><a href="mailto:hello@hmcxstudio.in">hello@hmcxstudio.in</a></div>
+              </div>
+            </div>
+
+            <div class="contact-detail">
+              <div class="cd-icon"><i class="fas fa-clock"></i></div>
+              <div class="cd-body">
+                <div class="cd-label">Working Hours</div>
+                <div class="cd-value">Mon – Sat: 10:00 AM – 7:00 PM<br>Sunday: Closed</div>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="contact-socials">
+            <a href="#" class="cs-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="cs-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="cs-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="cs-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="cs-link" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+
+        <!-- RIGHT: Contact Form -->
+        <div class="contact-form-wrap">
+          <h3>Send Us a Message</h3>
+          <p class="form-subtitle">Free consultation, zero obligation.</p>
+
+          <form class="contact-form-el" id="contactForm" novalidate>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-name">Full Name <span style="color:var(--blue-main)">*</span></label>
+                <input type="text" id="cf-name" name="name" placeholder="John Doe" required>
+              </div>
+              <div class="form-group">
+                <label for="cf-email">Email Address <span style="color:var(--blue-main)">*</span></label>
+                <input type="email" id="cf-email" name="email" placeholder="john@example.com" required>
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="cf-phone">Phone Number</label>
+                <input type="tel" id="cf-phone" name="phone" placeholder="+91 98765 43210">
+              </div>
+              <div class="form-group">
+                <label for="cf-company">Company / Brand</label>
+                <input type="text" id="cf-company" name="company" placeholder="Your Company Name">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="cf-service">Service Required</label>
+              <select id="cf-service" name="service">
+                <option value="" disabled selected>Select a service…</option>
+                <option value="web">Website Development</option>
+                <option value="seo">SEO Optimization</option>
+                <option value="marketing">Digital Marketing</option>
+                <option value="ads">Ads Management</option>
+                <option value="ai">AI Development</option>
+                <option value="logo">Logo Designing</option>
+                <option value="ecommerce">E-Commerce Solutions</option>
+                <option value="other">Other / Not Sure</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cf-budget">Budget Range</label>
+              <select id="cf-budget" name="budget">
+                <option value="" disabled selected>Select your budget…</option>
+                <option value="under10k">Under ₹10,000</option>
+                <option value="10k-50k">₹10,000 – ₹50,000</option>
+                <option value="50k-2l">₹50,000 – ₹2,00,000</option>
+                <option value="2lplus">₹2,00,000+</option>
+                <option value="custom">Custom / Let's Discuss</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cf-timeline">Project Timeline</label>
+              <select id="cf-timeline" name="timeline">
+                <option value="" disabled selected>Select a timeline…</option>
+                <option value="asap">As Soon As Possible</option>
+                <option value="1month">Within 1 Month</option>
+                <option value="1-3months">1 – 3 Months</option>
+                <option value="3-6months">3 – 6 Months</option>
+                <option value="flexible">Flexible</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="cf-message">Tell Us About Your Project <span style="color:var(--blue-main)">*</span></label>
+              <textarea id="cf-message" name="message" placeholder="Describe your project goals, requirements, or any questions you have…" required></textarea>
+            </div>
+
+            <button type="submit" class="form-submit-btn">
+              <i class="fas fa-paper-plane"></i> Send Message
+            </button>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       MAP SECTION
+  ═══════════════════════════════════ -->
+  <section class="map-section">
+    <div class="container">
+      <div class="section-header" style="text-align:center;">
+        <div class="section-label">Location</div>
+        <h2 class="section-title">Find <span>Us</span></h2>
+      </div>
+      <div class="map-wrap">
+        <div class="map-placeholder">
+          <div class="map-pin-icon"><i class="fas fa-map-marker-alt"></i></div>
+          <div class="map-address">C-42, Sector 63, Noida, UP – 201301</div>
+          <a href="https://maps.google.com/?q=C-42,+Sector+63,+Noida,+Uttar+Pradesh+201301" target="_blank" class="map-open-link">
+            <i class="fas fa-external-link-alt"></i> Open in Google Maps
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       WHY CONTACT US
+  ═══════════════════════════════════ -->
+  <section class="why-contact">
+    <div class="container">
+      <div class="section-header" style="text-align:center; margin-bottom:48px;">
+        <div class="section-label">Why Choose Us</div>
+        <h2 class="section-title">Why <span>Contact Us?</span></h2>
+        <p class="section-subtitle">We make every interaction easy, transparent, and genuinely helpful.</p>
+      </div>
+      <div class="why-grid">
+
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-handshake"></i></div>
+          <h4>No Obligation</h4>
+          <p>Free consultation with no strings attached. Talk to us, explore your options, and decide at your own pace.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-bolt"></i></div>
+          <h4>Quick Response</h4>
+          <p>We respond to all inquiries within 24 hours — usually much faster. Your time matters to us.</p>
+        </div>
+
+        <div class="why-card">
+          <div class="why-icon"><i class="fas fa-users-cog"></i></div>
+          <h4>Expert Team</h4>
+          <p>Talk directly with our senior team members who have years of industry experience — no middlemen.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FAQ SECTION
+  ═══════════════════════════════════ -->
+  <section class="faq-section">
+    <div class="container">
+      <div class="section-header" style="text-align:center; margin-bottom:48px;">
+        <div class="section-label">FAQs</div>
+        <h2 class="section-title">Frequently Asked <span>Questions</span></h2>
+        <p class="section-subtitle">Have questions before reaching out? We've answered the most common ones below.</p>
+      </div>
+
+      <div class="faq-list" style="max-width:760px; margin:0 auto;">
+
+        <div class="faq-item">
+          <div class="faq-question">
+            How long does it take to build a website?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Timelines vary based on the complexity and scope of your project. A simple brochure site typically takes 2–3 weeks, while a fully custom web application or e-commerce platform can range from 4–8 weeks. We'll give you a precise timeline during your free consultation.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Do you work with international clients?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Absolutely. We proudly serve clients across 20+ countries including the USA, UK, UAE, Australia, and Singapore. All communication and project management is handled seamlessly through online platforms, so geography is never a barrier.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            What payment methods do you accept?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>We accept all major payment methods including bank transfer, UPI, credit/debit cards, PayPal, and wire transfers for international clients. Projects are typically structured with a milestone-based payment schedule for complete transparency.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Do you provide ongoing support after launch?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Yes! We offer flexible maintenance and support packages to keep your digital assets running smoothly after launch. This includes security updates, performance monitoring, content edits, and feature additions — tailored to your needs.</p>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <div class="faq-question">
+            Can I see your portfolio before hiring?
+            <i class="fas fa-chevron-down"></i>
+          </div>
+          <div class="faq-answer">
+            <p>Of course! You're welcome to browse our full portfolio on our <a href="projects.html" style="color:var(--blue-main); font-weight:600;">Projects page</a>. You'll find case studies, live links, and detailed breakdowns of work across various industries and service categories.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       CTA SECTION
+  ═══════════════════════════════════ -->
+  <section class="cta-section">
+    <div class="container">
+      <div class="cta-content">
+        <div class="section-label" style="color:rgba(255,255,255,.7)">Ready to Start?</div>
+        <h2>Turn Your Vision Into<br><span>Digital Reality</span></h2>
+        <p>Join 200+ businesses worldwide that trust HmcxStudio to power their online growth.</p>
+        <div class="cta-btns">
+          <a href="#contactForm" class="btn-white">
+            <i class="fas fa-paper-plane"></i> Send a Message
+          </a>
+          <a href="https://wa.me/919999999999" target="_blank" class="btn-outline-white">
+            <i class="fab fa-whatsapp"></i> Chat on WhatsApp
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════════════════════
+       FOOTER
+  ═══════════════════════════════════ -->
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a href="index.html" class="logo" style="margin-bottom:10px">
+            <div class="logo-icon">H</div>
+            <span class="logo-text" style="color:white">Hmcx<span>Studio</span></span>
+          </a>
+          <p>Your trusted technology partner for digital transformation worldwide.</p>
+          <div class="footer-socials">
+            <a href="#" class="fs-link"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" class="fs-link"><i class="fab fa-instagram"></i></a>
+            <a href="#" class="fs-link"><i class="fab fa-linkedin-in"></i></a>
+            <a href="#" class="fs-link"><i class="fab fa-twitter"></i></a>
+            <a href="#" class="fs-link"><i class="fab fa-youtube"></i></a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li><a href="service-detail.html?s=web">Website Development</a></li>
+            <li><a href="service-detail.html?s=seo">SEO Optimization</a></li>
+            <li><a href="service-detail.html?s=marketing">Digital Marketing</a></li>
+            <li><a href="service-detail.html?s=ads">Ads Management</a></li>
+            <li><a href="service-detail.html?s=ai">AI Development</a></li>
+            <li><a href="service-detail.html?s=logo">Logo Designing</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Company</h4>
+          <ul>
+            <li><a href="about.html">About Us</a></li>
+            <li><a href="projects.html">Portfolio</a></li>
+            <li><a href="industries.html">Industries</a></li>
+            <li><a href="blog.html">Blog</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="footer-col footer-newsletter">
+          <h4>Newsletter</h4>
+          <p>Subscribe for digital insights.</p>
+          <div class="newsletter-input">
+            <input type="email" placeholder="Your email address">
+            <button><i class="fas fa-arrow-right"></i></button>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>© 2025 HmcxStudio. All rights reserved.</p>
+        <p><a href="#">Privacy Policy</a> · <a href="#">Terms</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Main JS -->
+  <script src="assets/js/main.js"></script>
+
+  <!-- Page-specific JS -->
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(function(question) {
+      question.addEventListener('click', function() {
+        var item = this.closest('.faq-item');
+        var answer = item.querySelector('.faq-answer');
+        var isOpen = item.classList.contains('open');
+
+        // Close all
+        document.querySelectorAll('.faq-item').forEach(function(el) {
+          el.classList.remove('open');
+          el.querySelector('.faq-answer').style.maxHeight = '0';
+        });
+
+        // Open clicked if it was closed
+        if (!isOpen) {
+          item.classList.add('open');
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        }
+      });
+    });
+
+    // Contact Form Submit
+    var contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+      contactForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        var btn = this.querySelector('.form-submit-btn');
+        var originalHTML = btn.innerHTML;
+
+        // Validate required fields
+        var name = this.querySelector('#cf-name').value.trim();
+        var email = this.querySelector('#cf-email').value.trim();
+        var message = this.querySelector('#cf-message').value.trim();
+
+        if (!name || !email || !message) {
+          btn.innerHTML = '<i class="fas fa-exclamation-circle"></i> Please fill required fields';
+          btn.style.background = 'linear-gradient(135deg,#ef4444,#f87171)';
+          setTimeout(function() {
+            btn.innerHTML = originalHTML;
+            btn.style.background = '';
+          }, 2500);
+          return;
+        }
+
+        // Simulate sending
+        btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending…';
+        btn.disabled = true;
+
+        setTimeout(function() {
+          btn.innerHTML = '<i class="fas fa-check-circle"></i> Message Sent!';
+          btn.style.background = 'linear-gradient(135deg,#10b981,#34d399)';
+          contactForm.reset();
+          setTimeout(function() {
+            btn.innerHTML = originalHTML;
+            btn.style.background = '';
+            btn.disabled = false;
+          }, 3000);
+        }, 1800);
+      });
+    }
+
+    // Smooth scroll for in-page CTA button
+    document.querySelectorAll('a[href="#contactForm"]').forEach(function(link) {
+      link.addEventListener('click', function(e) {
+        e.preventDefault();
+        var target = document.getElementById('contactForm');
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          setTimeout(function() {
+            document.getElementById('cf-name').focus();
+          }, 600);
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

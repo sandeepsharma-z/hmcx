@@ -1,0 +1,1128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Service Detail – HmcxStudio</title>
+<meta name="description" id="pageDesc" content="Explore our professional digital services at HmcxStudio.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&family=Manrope:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+<link rel="stylesheet" href="assets/css/style.css">
+<style>
+  :root {
+    --blue-main: #1e56c8;
+    --blue-bright: #3b82f6;
+    --accent: #06b6d4;
+    --blue-deep: #0a1628;
+    --off-white: #f8faff;
+    --blue-pale: #dbeafe;
+    --blue-ghost: #f0f6ff;
+  }
+
+  /* ===== PAGE HERO ===== */
+  .page-hero {
+    background: linear-gradient(135deg, var(--blue-deep) 0%, #0d1f3c 50%, #0a2040 100%);
+    padding: 160px 0 90px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .page-hero::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 30% 50%, rgba(30,86,200,.18) 0%, transparent 60%),
+                radial-gradient(ellipse at 75% 30%, rgba(6,182,212,.12) 0%, transparent 55%);
+  }
+  .page-hero-grid-bg {
+    position: absolute;
+    inset: 0;
+    background-image: linear-gradient(rgba(30,86,200,.07) 1px, transparent 1px),
+                      linear-gradient(90deg, rgba(30,86,200,.07) 1px, transparent 1px);
+    background-size: 50px 50px;
+  }
+  .page-hero .container { position: relative; z-index: 1; }
+  .breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 20px;
+    font-size: .82rem;
+    color: rgba(255,255,255,.5);
+    font-family: 'Manrope', sans-serif;
+  }
+  .breadcrumb a { color: rgba(255,255,255,.6); text-decoration: none; transition: color .2s; }
+  .breadcrumb a:hover { color: var(--accent); }
+  .breadcrumb i { font-size: .6rem; }
+  .hero-service-icon {
+    width: 72px;
+    height: 72px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    margin: 0 auto 24px;
+  }
+  .page-hero h1 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.2rem, 5vw, 3.4rem);
+    font-weight: 800;
+    color: #fff;
+    line-height: 1.15;
+    margin-bottom: 18px;
+    letter-spacing: -1px;
+  }
+  .page-hero h1 span { color: var(--accent); }
+  .page-hero .hero-subtitle {
+    color: rgba(255,255,255,.65);
+    font-size: 1.05rem;
+    font-family: 'Manrope', sans-serif;
+    max-width: 560px;
+    margin: 0 auto 30px;
+    line-height: 1.7;
+  }
+  .hero-pills {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 10px;
+  }
+  .hero-pill {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.12);
+    color: rgba(255,255,255,.75);
+    padding: 6px 16px;
+    border-radius: 100px;
+    font-size: .78rem;
+    font-family: 'Manrope', sans-serif;
+    font-weight: 500;
+  }
+
+  /* ===== SERVICE DETAIL SECTION ===== */
+  .service-detail-section {
+    padding: 90px 0;
+    background: var(--off-white);
+  }
+  .service-detail-grid {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 40px;
+    align-items: start;
+  }
+  @media(max-width:1000px) { .service-detail-grid { grid-template-columns: 1fr; } }
+
+  /* Left Content */
+  .service-content {}
+  .service-content h2 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(1.7rem, 3vw, 2.2rem);
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 20px;
+    letter-spacing: -.5px;
+  }
+  .service-content h2 span { color: var(--blue-main); }
+  .service-content .sd-para {
+    font-family: 'Manrope', sans-serif;
+    font-size: .97rem;
+    line-height: 1.8;
+    color: #4a5568;
+    margin-bottom: 18px;
+  }
+  .includes-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin: 40px 0 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .includes-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--blue-pale);
+  }
+  .service-include-list {
+    display: grid;
+    grid-template-columns: repeat(2,1fr);
+    gap: 16px;
+    margin-bottom: 48px;
+  }
+  @media(max-width:600px) { .service-include-list { grid-template-columns: 1fr; } }
+  .include-item {
+    background: #fff;
+    border: 1px solid var(--blue-pale);
+    border-radius: 14px;
+    padding: 20px 18px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    transition: box-shadow .25s ease, border-color .25s ease, transform .25s ease;
+  }
+  .include-item:hover {
+    box-shadow: 0 6px 28px rgba(30,86,200,.1);
+    border-color: rgba(30,86,200,.25);
+    transform: translateY(-3px);
+  }
+  .include-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 10px;
+    background: var(--blue-ghost);
+    color: var(--blue-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .9rem;
+    flex-shrink: 0;
+  }
+  .include-text h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .88rem;
+    font-weight: 600;
+    color: var(--blue-deep);
+    margin-bottom: 4px;
+  }
+  .include-text p {
+    font-family: 'Manrope', sans-serif;
+    font-size: .78rem;
+    color: #64748b;
+    line-height: 1.5;
+    margin: 0;
+  }
+  .process-steps-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .process-steps-title::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--blue-pale);
+  }
+  .process-steps-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .process-steps-list li {
+    display: flex;
+    gap: 18px;
+    align-items: flex-start;
+    padding: 0 0 28px;
+    position: relative;
+  }
+  .process-steps-list li:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 19px;
+    top: 40px;
+    bottom: 0;
+    width: 2px;
+    background: var(--blue-pale);
+  }
+  .psl-num {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--blue-main), var(--blue-bright));
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .8rem;
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+  .psl-text h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .93rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 5px;
+  }
+  .psl-text p {
+    font-family: 'Manrope', sans-serif;
+    font-size: .84rem;
+    color: #64748b;
+    line-height: 1.6;
+    margin: 0;
+  }
+
+  /* Right Sidebar */
+  .service-sidebar {
+    position: sticky;
+    top: 100px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  .service-cta-card {
+    border-radius: 20px;
+    padding: 32px 28px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+  }
+  .service-cta-card::before {
+    content: '';
+    position: absolute;
+    top: -40%;
+    right: -30%;
+    width: 200px;
+    height: 200px;
+    background: rgba(255,255,255,.07);
+    border-radius: 50%;
+  }
+  .service-cta-card::after {
+    content: '';
+    position: absolute;
+    bottom: -40%;
+    left: -20%;
+    width: 160px;
+    height: 160px;
+    background: rgba(255,255,255,.05);
+    border-radius: 50%;
+  }
+  .cta-card-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 14px;
+    background: rgba(255,255,255,.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin: 0 auto 18px;
+    position: relative;
+    z-index: 1;
+  }
+  .service-cta-card h3 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.15rem;
+    font-weight: 700;
+    margin-bottom: 10px;
+    position: relative;
+    z-index: 1;
+  }
+  .service-cta-card p {
+    font-family: 'Manrope', sans-serif;
+    font-size: .84rem;
+    opacity: .85;
+    line-height: 1.6;
+    margin-bottom: 24px;
+    position: relative;
+    z-index: 1;
+  }
+  .service-cta-card .cta-card-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #fff;
+    color: var(--blue-main);
+    padding: 12px 24px;
+    border-radius: 10px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-weight: 700;
+    font-size: .88rem;
+    text-decoration: none;
+    transition: all .25s ease;
+    position: relative;
+    z-index: 1;
+  }
+  .service-cta-card .cta-card-btn:hover {
+    background: var(--accent);
+    color: #fff;
+    transform: translateY(-2px);
+  }
+  .service-other-card {
+    background: #fff;
+    border: 1px solid var(--blue-pale);
+    border-radius: 20px;
+    padding: 24px;
+  }
+  .service-other-card h4 {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: .95rem;
+    font-weight: 700;
+    color: var(--blue-deep);
+    margin-bottom: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid var(--blue-pale);
+  }
+  .other-service-link {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    transition: background .2s ease;
+    margin-bottom: 2px;
+  }
+  .other-service-link:hover { background: var(--blue-ghost); }
+  .other-service-link .osl-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: var(--blue-ghost);
+    color: var(--blue-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: .75rem;
+    flex-shrink: 0;
+    transition: background .2s ease;
+  }
+  .other-service-link:hover .osl-icon { background: var(--blue-main); color: #fff; }
+  .other-service-link span {
+    font-family: 'Manrope', sans-serif;
+    font-size: .85rem;
+    font-weight: 500;
+    color: #4a5568;
+    transition: color .2s;
+  }
+  .other-service-link:hover span { color: var(--blue-main); }
+  .other-service-link.active-service .osl-icon { background: var(--blue-main); color: #fff; }
+  .other-service-link.active-service span { color: var(--blue-main); font-weight: 700; }
+
+  /* ===== RESULTS STATS ===== */
+  .results-section {
+    padding: 80px 0;
+    background: var(--blue-deep);
+    position: relative;
+    overflow: hidden;
+  }
+  .results-section::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at 20% 50%, rgba(30,86,200,.25) 0%, transparent 55%),
+                radial-gradient(ellipse at 80% 30%, rgba(6,182,212,.15) 0%, transparent 50%);
+  }
+  .results-section .container { position: relative; z-index: 1; }
+  .results-header {
+    text-align: center;
+    margin-bottom: 56px;
+  }
+  .results-header h2 { color: #fff; }
+  .results-header p { color: rgba(255,255,255,.6); max-width: 500px; margin: 10px auto 0; font-family: 'Manrope', sans-serif; font-size: .95rem; }
+  .results-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+  }
+  @media(max-width:700px) { .results-grid { grid-template-columns: 1fr; max-width: 360px; margin: 0 auto; } }
+  .result-card {
+    background: rgba(255,255,255,.05);
+    border: 1px solid rgba(255,255,255,.1);
+    border-radius: 20px;
+    padding: 40px 28px;
+    text-align: center;
+    transition: background .3s ease, transform .3s ease;
+  }
+  .result-card:hover {
+    background: rgba(255,255,255,.09);
+    transform: translateY(-6px);
+  }
+  .result-num {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: clamp(2.5rem, 5vw, 3.5rem);
+    font-weight: 800;
+    color: var(--accent);
+    line-height: 1;
+    margin-bottom: 8px;
+  }
+  .result-label {
+    font-family: 'Manrope', sans-serif;
+    font-size: .88rem;
+    color: rgba(255,255,255,.65);
+    line-height: 1.5;
+  }
+
+  /* ===== RELATED PROJECTS ===== */
+  .related-projects-section {
+    padding: 90px 0;
+    background: #fff;
+  }
+  .related-projects-section .section-intro {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .related-grid {
+    display: grid;
+    grid-template-columns: repeat(3,1fr);
+    gap: 24px;
+  }
+  @media(max-width:800px) { .related-grid { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+
+<!-- LEFT SOCIALS -->
+<div class="side-social">
+  <span class="side-label">Follow</span>
+  <a href="#" class="ss-link" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+  <a href="#" class="ss-link" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+  <a href="#" class="ss-link" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+  <a href="#" class="ss-link" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+</div>
+
+<!-- CHATBOT FAB -->
+<a href="javascript:void(0)" class="chatbot-fab" id="chatbotFab" aria-label="Chat with us"><i class="fas fa-robot"></i></a>
+<div class="chatbot-panel" id="chatbotPanel">
+  <div class="chatbot-head">
+    <div class="chatbot-title"><i class="fas fa-robot"></i> HmcxStudio Assistant</div>
+    <button class="chatbot-close" id="chatbotClose">×</button>
+  </div>
+  <div class="chatbot-body">
+    <div class="chatbot-messages" id="chatbotMessages">
+      <div class="cb-msg bot">Hi! 👋 How can we help you today?</div>
+    </div>
+    <div class="chatbot-actions">
+      <button class="cb-btn">Services</button>
+      <button class="cb-btn primary">Get Quote</button>
+    </div>
+    <div class="chatbot-input">
+      <input type="text" id="chatbotInput" placeholder="Type...">
+      <button class="chatbot-send" id="chatbotSend"><i class="fas fa-paper-plane"></i></button>
+    </div>
+  </div>
+</div>
+
+<!-- FLOATING BUTTONS -->
+<div class="float-btns">
+  <a href="https://wa.me/919999999999" target="_blank" class="whatsapp-btn" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
+  <div class="scroll-top" id="scrollTop"><i class="fas fa-arrow-up"></i></div>
+</div>
+
+<!-- NAVBAR -->
+<nav id="navbar">
+  <a href="index.html" class="logo">
+    <div class="logo-icon">H</div>
+    <span class="logo-text">Hmcx<span>Studio</span></span>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About</a></li>
+    <li class="nav-dropdown">
+      <a href="services.html" class="active">Services <i class="fas fa-chevron-down" style="font-size:.65rem;margin-left:3px"></i></a>
+      <div class="nav-dropdown-menu">
+        <a href="service-detail.html?s=web"><i class="fas fa-laptop-code"></i> Website Development</a>
+        <a href="service-detail.html?s=maintenance"><i class="fas fa-tools"></i> Web Maintenance</a>
+        <a href="service-detail.html?s=seo"><i class="fas fa-search"></i> SEO Optimization</a>
+        <a href="service-detail.html?s=marketing"><i class="fas fa-bullhorn"></i> Digital Marketing</a>
+        <a href="service-detail.html?s=ads"><i class="fas fa-ad"></i> Ads Management</a>
+        <a href="service-detail.html?s=ai"><i class="fas fa-robot"></i> AI Development</a>
+        <a href="service-detail.html?s=logo"><i class="fas fa-pen-nib"></i> Logo Designing</a>
+        <a href="service-detail.html?s=graphic"><i class="fas fa-paint-brush"></i> Graphic Designing</a>
+      </div>
+    </li>
+    <li><a href="projects.html">Projects</a></li>
+    <li><a href="industries.html">Industries</a></li>
+    <li><a href="blog.html">Blog</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+  <a href="contact.html" class="nav-cta">Get Free Quote</a>
+  <div class="hamburger" id="hamburger"><span></span><span></span><span></span></div>
+</nav>
+
+<!-- MOBILE NAV -->
+<div class="mobile-nav" id="mobileNav">
+  <a href="index.html"><i class="fas fa-home"></i> Home</a>
+  <a href="about.html"><i class="fas fa-users"></i> About</a>
+  <a href="services.html"><i class="fas fa-cogs"></i> Services</a>
+  <a href="projects.html"><i class="fas fa-briefcase"></i> Projects</a>
+  <a href="industries.html"><i class="fas fa-industry"></i> Industries</a>
+  <a href="blog.html"><i class="fas fa-blog"></i> Blog</a>
+  <a href="contact.html"><i class="fas fa-phone"></i> Contact</a>
+  <div class="mobile-divider"></div>
+  <a href="contact.html" class="mobile-cta"><i class="fas fa-rocket"></i> Get Free Quote</a>
+</div>
+
+<!-- PAGE HERO (dynamic) -->
+<section class="page-hero" id="pageHero">
+  <div class="page-hero-grid-bg"></div>
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">Home</a>
+      <i class="fas fa-chevron-right"></i>
+      <a href="services.html">Services</a>
+      <i class="fas fa-chevron-right"></i>
+      <span id="heroBreadcrumb">Service</span>
+    </div>
+    <div class="hero-service-icon" id="heroIcon"></div>
+    <h1 id="heroTitle">Our <span id="heroTitleSpan">Service</span></h1>
+    <p class="hero-subtitle" id="heroSubtitle"></p>
+    <div class="hero-pills" id="heroPills"></div>
+  </div>
+</section>
+
+<!-- SERVICE DETAIL -->
+<section class="service-detail-section">
+  <div class="container">
+    <div class="service-detail-grid">
+
+      <!-- LEFT CONTENT -->
+      <div class="service-content">
+        <h2 id="contentTitle">Professional <span>Service</span></h2>
+        <p class="sd-para" id="contentPara1"></p>
+        <p class="sd-para" id="contentPara2"></p>
+
+        <div class="includes-title">What's Included</div>
+        <div class="service-include-list" id="includesList"></div>
+
+        <div class="process-steps-title">Our Process</div>
+        <ul class="process-steps-list" id="processList"></ul>
+      </div>
+
+      <!-- RIGHT SIDEBAR -->
+      <div class="service-sidebar">
+        <!-- CTA Card -->
+        <div class="service-cta-card" id="ctaCard">
+          <div class="cta-card-icon" id="ctaIcon"></div>
+          <h3>Ready to Get Started?</h3>
+          <p id="ctaCardDesc">Tell us about your project and we'll get back to you with a free proposal within 24 hours.</p>
+          <a href="contact.html" class="cta-card-btn"><i class="fas fa-rocket"></i> Get Free Quote</a>
+        </div>
+        <!-- Other Services -->
+        <div class="service-other-card">
+          <h4><i class="fas fa-grid-2" style="color:var(--blue-main);margin-right:6px"></i> Other Services</h4>
+          <div id="otherServicesList"></div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- RESULTS / STATS -->
+<section class="results-section">
+  <div class="container">
+    <div class="results-header reveal">
+      <div class="section-label" style="color:rgba(255,255,255,.7);background:rgba(255,255,255,.08);border-color:rgba(255,255,255,.15)">Proven Results</div>
+      <h2 class="section-title" style="color:#fff">The <span style="color:var(--accent)">Impact</span> We Deliver</h2>
+      <p id="resultsSubtitle">Real numbers from real client projects — see what we achieve.</p>
+    </div>
+    <div class="results-grid" id="resultsGrid"></div>
+  </div>
+</section>
+
+<!-- RELATED PROJECTS -->
+<section class="related-projects-section">
+  <div class="container">
+    <div class="section-intro reveal">
+      <div class="section-label">Portfolio</div>
+      <h2 class="section-title">Related <span>Projects</span></h2>
+      <p class="section-subtitle" style="max-width:500px;margin:0 auto">A glimpse of our work in this service area. Every project is built to impress.</p>
+    </div>
+    <div class="related-grid" id="relatedGrid"></div>
+    <div style="text-align:center;margin-top:48px">
+      <a href="projects.html" class="btn btn-primary">View All Projects <i class="fas fa-arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-section">
+  <div class="container">
+    <div class="cta-inner reveal">
+      <h2>Ready to Transform Your<br>Digital Presence?</h2>
+      <p>Let's build something extraordinary together. Get your free consultation today — no obligation.</p>
+      <div class="cta-btns">
+        <a href="contact.html" class="btn btn-white"><i class="fas fa-rocket"></i> Start Your Project</a>
+        <a href="tel:+919999999999" class="btn btn-ghost-white"><i class="fas fa-phone"></i> Call Us Now</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <a href="index.html" class="logo" style="margin-bottom:10px">
+          <div class="logo-icon">H</div>
+          <span class="logo-text" style="color:white">Hmcx<span>Studio</span></span>
+        </a>
+        <p>Your trusted technology partner for digital transformation worldwide. We build, grow, and maintain the digital future of businesses across all industries.</p>
+        <div class="footer-socials">
+          <a href="#" class="fs-link"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" class="fs-link"><i class="fab fa-instagram"></i></a>
+          <a href="#" class="fs-link"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" class="fs-link"><i class="fab fa-twitter"></i></a>
+          <a href="#" class="fs-link"><i class="fab fa-youtube"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Services</h4>
+        <ul>
+          <li><a href="service-detail.html?s=web">Website Development</a></li>
+          <li><a href="service-detail.html?s=maintenance">Website Maintenance</a></li>
+          <li><a href="service-detail.html?s=seo">SEO Optimization</a></li>
+          <li><a href="service-detail.html?s=marketing">Digital Marketing</a></li>
+          <li><a href="service-detail.html?s=ads">Ads Management</a></li>
+          <li><a href="service-detail.html?s=ai">AI Development</a></li>
+          <li><a href="service-detail.html?s=logo">Logo Designing</a></li>
+          <li><a href="service-detail.html?s=graphic">Graphic Designing</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="about.html">About Us</a></li>
+          <li><a href="about.html#team">Our Team</a></li>
+          <li><a href="projects.html">Portfolio</a></li>
+          <li><a href="industries.html">Industries</a></li>
+          <li><a href="blog.html">Blog</a></li>
+          <li><a href="contact.html">Contact</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Subscribe for the latest digital marketing tips, trends, and insights delivered weekly to your inbox.</p>
+        <div class="newsletter-input">
+          <input type="email" placeholder="Your email address">
+          <button><i class="fas fa-arrow-right"></i></button>
+        </div>
+        <p style="margin-top:16px;font-size:.78rem;color:rgba(255,255,255,.35)">No spam. Unsubscribe anytime.</p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 HmcxStudio. All rights reserved. Crafted with ❤️ for the digital world.</p>
+      <p><a href="#">Privacy Policy</a> &nbsp;·&nbsp; <a href="#">Terms of Service</a> &nbsp;·&nbsp; <a href="#">Sitemap</a></p>
+    </div>
+  </div>
+</footer>
+
+<script src="assets/js/main.js"></script>
+<script>
+/* ============================================================
+   SERVICE DATA
+   ============================================================ */
+const services = {
+  web: {
+    title: 'Website Development',
+    subtitle: 'Custom, high-performance websites built with the latest technologies for exceptional user experiences.',
+    description: 'We craft bespoke, lightning-fast websites that are designed for performance and conversion. From startup landing pages to enterprise-grade web applications.',
+    icon: 'fas fa-laptop-code',
+    color: 'linear-gradient(135deg, #1e56c8 0%, #3b82f6 100%)',
+    pills: ['React', 'WordPress', 'Node.js', 'E-Commerce', 'PWA', 'API Integration'],
+    para1: 'At HmcxStudio, our website development service goes far beyond building pretty pages. We architect digital experiences that engage visitors, drive conversions, and scale with your business. Whether you need a sleek corporate website, a high-volume e-commerce store, or a complex custom web application, our developers combine modern frameworks with pixel-perfect design to deliver world-class results.',
+    para2: 'Every website we build is mobile-first, optimized for Google Core Web Vitals, and structured for maximum SEO impact from day one. We work closely with you throughout the process — from wireframes to final launch — ensuring the end product aligns perfectly with your brand and business goals. Our post-launch support ensures everything keeps running at peak performance.',
+    includes: [
+      { icon: 'fas fa-mobile-alt', title: 'Responsive Design', desc: 'Perfect across all devices and screen sizes' },
+      { icon: 'fas fa-tachometer-alt', title: 'Performance Optimized', desc: '95+ PageSpeed score, fast load times' },
+      { icon: 'fas fa-shopping-cart', title: 'E-Commerce Ready', desc: 'WooCommerce, Shopify, custom cart solutions' },
+      { icon: 'fas fa-search', title: 'SEO Foundation', desc: 'On-page SEO, schema markup, sitemap built-in' },
+      { icon: 'fas fa-shield-alt', title: 'Security Hardened', desc: 'SSL, firewalls, malware protection included' },
+      { icon: 'fas fa-database', title: 'CMS Integration', desc: 'Easy content management for your team' },
+      { icon: 'fas fa-plug', title: 'API Integrations', desc: 'CRM, payment gateways, third-party tools' },
+      { icon: 'fas fa-headset', title: 'Post-Launch Support', desc: '90-day free support after delivery' }
+    ],
+    process: [
+      { title: 'Discovery & Scope', desc: 'We analyse your business, target audience, competitors, and define project scope, sitemap, and technology stack.' },
+      { title: 'Design & Prototyping', desc: 'Wireframes and high-fidelity mockups crafted in Figma — reviewed and approved by you before development begins.' },
+      { title: 'Development & Testing', desc: 'Clean, scalable code with regular milestone demos. Full QA across devices and browsers before launch.' },
+      { title: 'Launch & Handover', desc: 'Smooth deployment, DNS configuration, staff training, and a 90-day support window to ensure ongoing success.' }
+    ],
+    stats: [
+      { num: '95+', label: 'Average PageSpeed Score on websites we build' },
+      { num: '3x', label: 'Average increase in conversions post-redesign' },
+      { num: '150+', label: 'Websites launched across 20+ industries' }
+    ],
+    relatedProjects: [
+      { bg: 'pi-bg1', icon: 'fas fa-store', cat: 'E-Commerce / Web Dev', title: 'LuxeCart – Premium Shopping Platform', link: 'project-detail.html?p=luxecart' },
+      { bg: 'pi-bg4', icon: 'fas fa-graduation-cap', cat: 'Web Dev / LMS Platform', title: 'EduSpark – Online Learning Platform', link: 'project-detail.html?p=eduspark' },
+      { bg: 'pi-bg6', icon: 'fas fa-building', cat: 'Web Dev / Corporate', title: 'BuildCore – Real Estate Web Platform', link: 'project-detail.html?p=buildcore' }
+    ]
+  },
+
+  maintenance: {
+    title: 'Website Maintenance',
+    subtitle: 'Keep your website secure, fast, and always up-to-date with our proactive care plans.',
+    description: 'Proactive website care that ensures your site runs flawlessly around the clock.',
+    icon: 'fas fa-tools',
+    color: 'linear-gradient(135deg, #0a1628 0%, #1e3a6e 100%)',
+    pills: ['Security', 'Updates', 'Backups', '24/7 Monitoring', 'Performance', 'Uptime'],
+    para1: 'Your website is your most important digital asset — and like any asset, it needs regular care to perform at its best. Our website maintenance plans provide comprehensive, hands-off management so you can focus on your business while we handle the technical side. From security patches and plugin updates to performance optimization and content changes, we cover every aspect of keeping your site in peak condition.',
+    para2: "Website maintenance is not just about fixing things when they break. It's about proactive monitoring, preventing issues before they occur, and continuously improving your site's speed, security, and user experience. Our maintenance retainers include monthly health reports so you always have full visibility into the status and performance of your website.",
+    includes: [
+      { icon: 'fas fa-shield-alt', title: 'Security Monitoring', desc: 'Real-time malware scanning and threat detection' },
+      { icon: 'fas fa-sync-alt', title: 'Plugin & Core Updates', desc: 'Safe, tested updates for WordPress, plugins, themes' },
+      { icon: 'fas fa-database', title: 'Daily Backups', desc: 'Automated backups with one-click restore' },
+      { icon: 'fas fa-chart-line', title: 'Uptime Monitoring', desc: '99.9% uptime guarantee with instant alerts' },
+      { icon: 'fas fa-tachometer-alt', title: 'Performance Tuning', desc: 'Page speed optimization, image compression' },
+      { icon: 'fas fa-file-alt', title: 'Content Updates', desc: 'Regular text, image, and product updates' },
+      { icon: 'fas fa-bug', title: 'Bug Fixing', desc: 'Priority bug resolution within 24 hours' },
+      { icon: 'fas fa-file-pdf', title: 'Monthly Reports', desc: 'Detailed site health and analytics report' }
+    ],
+    process: [
+      { title: 'Site Audit', desc: 'Full assessment of your existing site — security vulnerabilities, outdated components, performance issues identified.' },
+      { title: 'Plan Setup', desc: 'We configure monitoring tools, backup schedules, security hardening, and establish your maintenance workflow.' },
+      { title: 'Ongoing Management', desc: 'Monthly update cycles, content changes, performance checks, and proactive security measures run seamlessly.' },
+      { title: 'Monthly Reporting', desc: 'Detailed report covering uptime stats, actions taken, performance metrics, and recommendations for the next cycle.' }
+    ],
+    stats: [
+      { num: '99.9%', label: 'Average uptime guaranteed across our maintenance clients' },
+      { num: '0', label: 'Security breaches across maintained client websites in 2024' },
+      { num: '40%', label: 'Average improvement in page load speed after onboarding' }
+    ],
+    relatedProjects: [
+      { bg: 'pi-bg1', icon: 'fas fa-store', cat: 'Maintenance / E-Commerce', title: 'LuxeCart – Ongoing Care Plan', link: 'project-detail.html?p=luxecart' },
+      { bg: 'pi-bg4', icon: 'fas fa-graduation-cap', cat: 'Maintenance / LMS', title: 'EduSpark – Monthly Maintenance', link: 'project-detail.html?p=eduspark' },
+      { bg: 'pi-bg2', icon: 'fas fa-chart-line', cat: 'Security / Performance', title: 'FinEdge – Security Overhaul', link: 'project-detail.html?p=finedge' }
+    ]
+  },
+
+  seo: {
+    title: 'SEO Optimization',
+    subtitle: 'Rank higher on Google, drive quality organic traffic, and generate more leads with data-driven SEO.',
+    description: 'Data-driven strategies that take your website from invisible to unbeatable on search engines.',
+    icon: 'fas fa-search',
+    color: 'linear-gradient(135deg, #0f766e 0%, #06b6d4 100%)',
+    pills: ['On-Page SEO', 'Technical SEO', 'Link Building', 'Content Strategy', 'Local SEO', 'Analytics'],
+    para1: 'Search engine optimization is the most cost-effective long-term channel for sustainable business growth. Our SEO team combines deep technical expertise with creative content strategy to help you rank for the keywords your customers are actually searching. We do not chase shortcuts — we build lasting authority through white-hat practices that stand the test of every algorithm update.',
+    para2: "From a comprehensive technical audit that uncovers hidden roadblocks to an ongoing content strategy that positions you as an industry authority, our SEO service is a complete, end-to-end solution. We track every ranking movement, traffic shift, and conversion metric so you always know exactly what your investment is delivering. Our clients typically see first-page rankings within 3–6 months.",
+    includes: [
+      { icon: 'fas fa-microscope', title: 'SEO Audit', desc: 'Comprehensive technical & on-page audit' },
+      { icon: 'fas fa-key', title: 'Keyword Research', desc: 'In-depth analysis of high-value target keywords' },
+      { icon: 'fas fa-file-code', title: 'On-Page Optimization', desc: 'Meta tags, headers, content structure, schema' },
+      { icon: 'fas fa-code', title: 'Technical SEO', desc: 'Site speed, crawlability, Core Web Vitals' },
+      { icon: 'fas fa-link', title: 'Link Building', desc: 'High-authority backlinks through outreach' },
+      { icon: 'fas fa-pen', title: 'Content Strategy', desc: 'SEO content calendar and blog optimization' },
+      { icon: 'fas fa-map-marker-alt', title: 'Local SEO', desc: 'Google Business Profile & local citations' },
+      { icon: 'fas fa-chart-bar', title: 'Monthly Reporting', desc: 'Rankings, traffic, and conversions tracked' }
+    ],
+    process: [
+      { title: 'Audit & Analysis', desc: 'Complete technical and competitive analysis — identifying gaps, opportunities, and the fastest path to page one.' },
+      { title: 'Strategy & Planning', desc: 'Custom keyword strategy, content roadmap, and technical fix priority list aligned to your business goals.' },
+      { title: 'Implementation', desc: 'On-page optimization, technical fixes, link building campaigns, and content publishing begin simultaneously.' },
+      { title: 'Monitor & Improve', desc: 'Continuous monitoring of rankings, traffic, and algorithm changes. Monthly reports and strategy refinement.' }
+    ],
+    stats: [
+      { num: '400%', label: 'Average organic traffic increase within 12 months' },
+      { num: '#1', label: 'Page-one rankings achieved for 80% of target keywords' },
+      { num: '3.2x', label: 'Average ROI reported by our SEO clients in year one' }
+    ],
+    relatedProjects: [
+      { bg: 'pi-bg2', icon: 'fas fa-chart-line', cat: 'SEO / Digital Marketing', title: 'FinEdge – 400% Organic Traffic Growth', link: 'project-detail.html?p=finedge' },
+      { bg: 'pi-bg1', icon: 'fas fa-store', cat: 'E-Commerce SEO', title: 'LuxeCart – Category Page Ranking', link: 'project-detail.html?p=luxecart' },
+      { bg: 'pi-bg4', icon: 'fas fa-graduation-cap', cat: 'Local SEO / Education', title: 'EduSpark – Local Search Domination', link: 'project-detail.html?p=eduspark' }
+    ]
+  },
+
+  marketing: {
+    title: 'Digital Marketing',
+    subtitle: 'Full-spectrum digital marketing that builds brand authority, engages audiences, and accelerates growth.',
+    description: 'Strategy-led digital marketing across every channel that matters to your audience.',
+    icon: 'fas fa-bullhorn',
+    color: 'linear-gradient(135deg, #7c3aed 0%, #a855f7 100%)',
+    pills: ['Social Media', 'Content Marketing', 'Email Campaigns', 'Influencer', 'Analytics', 'Growth Hacking'],
+    para1: 'In an era of information overload, cutting through the noise requires more than just posting on social media. Our digital marketing service is a comprehensive, multi-channel growth engine — combining content strategy, social media management, email marketing, influencer partnerships, and data analytics to build authentic connections with your target audience and turn them into loyal customers.',
+    para2: 'We start by deeply understanding your brand voice, audience persona, and competitive landscape. Then we build a tailored marketing calendar that keeps your brand consistently visible, engaging, and relevant. Every campaign is measured, analysed, and optimised in real time. Whether you want to grow your Instagram following, nurture leads through email, or launch a viral content campaign, we have the expertise to make it happen.',
+    includes: [
+      { icon: 'fab fa-instagram', title: 'Social Media Management', desc: 'Daily posts, stories, reels for all platforms' },
+      { icon: 'fas fa-pen-fancy', title: 'Content Creation', desc: 'Blogs, videos, infographics, carousels' },
+      { icon: 'fas fa-envelope-open-text', title: 'Email Marketing', desc: 'Automated sequences and newsletters' },
+      { icon: 'fas fa-users', title: 'Influencer Outreach', desc: 'Micro and macro influencer partnerships' },
+      { icon: 'fas fa-chart-pie', title: 'Analytics & Reporting', desc: 'Monthly performance dashboards' },
+      { icon: 'fas fa-funnel-dollar', title: 'Funnel Optimization', desc: 'Lead nurturing and conversion flows' },
+      { icon: 'fas fa-hashtag', title: 'Community Management', desc: 'Engagement, comments, DM responses' },
+      { icon: 'fas fa-rocket', title: 'Growth Campaigns', desc: 'Viral campaigns, giveaways, contests' }
+    ],
+    process: [
+      { title: 'Brand & Audience Audit', desc: 'Review of your current digital presence, audience insights, and competitive positioning across all channels.' },
+      { title: 'Strategy & Content Plan', desc: 'Custom 90-day content calendar, channel strategy, posting schedule, and campaign roadmap creation.' },
+      { title: 'Execution & Publishing', desc: 'Daily content creation, scheduling, community management, and campaign launches run by our dedicated team.' },
+      { title: 'Review & Scale', desc: 'Monthly performance analysis, A/B testing insights, strategy refinement, and scaling successful campaigns.' }
+    ],
+    stats: [
+      { num: '280%', label: 'Average increase in social media engagement within 6 months' },
+      { num: '45%', label: 'Average email open rate — vs. 21% industry average' },
+      { num: '5x', label: 'Brand reach increase for clients in our first 90 days' }
+    ],
+    relatedProjects: [
+      { bg: 'pi-bg2', icon: 'fas fa-chart-line', cat: 'SEO / Digital Marketing', title: 'FinEdge – Full Digital Marketing Campaign', link: 'project-detail.html?p=finedge' },
+      { bg: 'pi-bg6', icon: 'fas fa-spa', cat: 'Social Media / Content', title: 'BloomBotanica – Visual Campaign Suite', link: 'project-detail.html?p=bloombotanica' },
+      { bg: 'pi-bg5', icon: 'fas fa-ad', cat: 'Marketing / Ads', title: 'RealNest – Integrated Marketing Push', link: 'project-detail.html?p=realnest' }
+    ]
+  },
+
+  ads: {
+    title: 'Ads Management',
+    subtitle: 'ROI-focused paid advertising across Google, Meta, LinkedIn, and beyond — maximum returns on every rupee spent.',
+    description: 'Precision-targeted ad campaigns engineered to maximize conversions and minimize cost-per-acquisition.',
+    icon: 'fas fa-ad',
+    color: 'linear-gradient(135deg, #dc2626 0%, #f97316 100%)',
+    pills: ['Google Ads', 'Meta Ads', 'PPC', 'Retargeting', 'LinkedIn Ads', 'Display'],
+    para1: 'Paid advertising, when done right, is the fastest way to generate qualified leads and sales at scale. Our ads management team lives and breathes performance marketing. We design, launch, and continuously optimise campaigns across Google Search, Display, Shopping, YouTube, Facebook, Instagram, and LinkedIn — always focused on one goal: your return on ad spend.',
+    para2: "We don't just set and forget. Our team monitors campaigns daily, adjusting bids, audiences, creatives, and landing pages based on real-time data. We eliminate wasteful spending, amplify what works, and use advanced techniques like remarketing and lookalike audiences to reach your most valuable prospects. Every campaign is backed by transparent weekly reporting so you always know where your budget is going.",
+    includes: [
+      { icon: 'fab fa-google', title: 'Google Search Ads', desc: 'High-intent keyword campaigns that convert' },
+      { icon: 'fab fa-meta', title: 'Meta Ads (FB/IG)', desc: 'Targeted Facebook and Instagram ad campaigns' },
+      { icon: 'fas fa-shopping-bag', title: 'Google Shopping', desc: 'Product listing ads for e-commerce stores' },
+      { icon: 'fas fa-redo', title: 'Retargeting', desc: 'Re-engage website visitors across platforms' },
+      { icon: 'fab fa-linkedin', title: 'LinkedIn Ads', desc: 'B2B lead generation via LinkedIn campaigns' },
+      { icon: 'fas fa-image', title: 'Display & Banner Ads', desc: 'Visual brand awareness across the web' },
+      { icon: 'fas fa-video', title: 'YouTube Video Ads', desc: 'Skippable and non-skippable video ads' },
+      { icon: 'fas fa-chart-line', title: 'Conversion Tracking', desc: 'Full pixel setup and conversion attribution' }
+    ],
+    process: [
+      { title: 'Account Audit & Setup', desc: 'Audit of existing accounts (or fresh setup), pixel installation, conversion goal configuration, and audience creation.' },
+      { title: 'Campaign Build', desc: 'Ad structure design, compelling ad copy and creatives, landing page recommendations, and campaign go-live.' },
+      { title: 'Optimization Loop', desc: 'Daily monitoring, A/B testing of creatives, bid adjustments, negative keyword refinement, audience pruning.' },
+      { title: 'Reporting & Strategy', desc: 'Weekly performance snapshots and monthly strategy calls to review ROAS, CPL, CPA, and scale winners.' }
+    ],
+    stats: [
+      { num: '5x', label: 'Average ROAS achieved for our e-commerce ad clients' },
+      { num: '60%', label: 'Average reduction in cost-per-lead after 90 days of management' },
+      { num: '$2M+', label: 'Total ad spend managed across platforms in 2024' }
+    ],
+    relatedProjects: [
+      { bg: 'pi-bg5', icon: 'fas fa-ad', cat: 'Ads / PPC Campaign', title: 'RealNest – 5x ROAS Google Ads Campaign', link: 'project-detail.html?p=realnest' },
+      { bg: 'pi-bg1', icon: 'fas fa-store', cat: 'Meta Ads / E-Commerce', title: 'LuxeCart – Facebook Shopping Campaign', link: 'project-detail.html?p=luxecart' },
+      { bg: 'pi-bg2', icon: 'fas fa-chart-line', cat: 'Google Ads / Finance', title: 'FinEdge – Lead Generation Campaign', link: 'project-detail.html?p=finedge' }
+    ]
+  },
+
+  ai: {
+    title: 'AI Development',
+    subtitle: 'Custom AI tools, intelligent chatbots, and smart automation systems that transform the way you work.',
+    description: 'Cutting-edge artificial intelligence solutions built to automate, accelerate, and amplify your business.',
+    icon: 'fas fa-robot',
+    color: 'linear-gradient(135deg, #0a1628 0%, #1e56c8 60%, #06b6d4 100%)',
+    pills: ['ChatGPT API', 'Chatbots', 'ML Models', 'Automation', 'NLP', 'LangChain'],
+    para1: 'Artificial intelligence is no longer a futuristic concept — it is a practical, powerful business tool available right now. HmcxStudio\'s AI development team builds custom AI-powered applications tailored specifically to your business workflows. From intelligent customer service chatbots to machine learning models that predict sales trends, we help you leverage AI to work smarter, faster, and more profitably.',
+    para2: "Our AI solutions are built on proven frameworks including OpenAI's GPT-4, Claude, LangChain, and custom-trained models. Whether you want to automate repetitive tasks, analyze large datasets for insights, create a 24/7 AI sales assistant, or build an intelligent recommendation engine for your platform, our team has the expertise to deliver it. We build, test, and train models with your real business data for maximum relevance and accuracy.",
+    includes: [
+      { icon: 'fas fa-comments', title: 'AI Chatbots', desc: 'Custom GPT-powered customer support bots' },
+      { icon: 'fas fa-cogs', title: 'Workflow Automation', desc: 'Automated business processes via AI agents' },
+      { icon: 'fas fa-brain', title: 'ML Model Development', desc: 'Custom prediction and classification models' },
+      { icon: 'fas fa-language', title: 'NLP Solutions', desc: 'Text analysis, sentiment detection, extraction' },
+      { icon: 'fas fa-search-plus', title: 'AI Search & Recommendations', desc: 'Smart search and product recommendation engines' },
+      { icon: 'fas fa-file-invoice', title: 'Document Intelligence', desc: 'Automated document parsing and extraction' },
+      { icon: 'fas fa-plug', title: 'API Integrations', desc: 'OpenAI, Anthropic, Gemini API integration' },
+      { icon: 'fas fa-graduation-cap', title: 'Model Fine-Tuning', desc: 'Train AI on your proprietary business data' }
+    ],
+    process: [
+      { title: 'Use Case Discovery', desc: 'We identify the highest-impact AI opportunities in your workflows through interviews, process mapping, and feasibility analysis.' },
+      { title: 'Architecture Design', desc: 'Select the right models, frameworks, and data pipelines. Design the AI system architecture and integration approach.' },
+      { title: 'Build & Train', desc: 'Development of the AI solution, data preparation, model training, prompt engineering, and rigorous testing.' },
+      { title: 'Deploy & Iterate', desc: 'Production deployment with monitoring, performance tracking, continuous model improvement, and staff training.' }
+    ],
+    stats: [
+      { num: '70%', label: 'Average reduction in customer support workload with our AI chatbots' },
+      { num: '10x', label: 'Faster document processing with our AI extraction solutions' },
+      { num: '50+', label: 'Custom AI tools and automations deployed for clients globally' }
+    ],
+    relatedProjects: [
+      { bg: 'pi-bg4', icon: 'fas fa-robot', cat: 'AI / Chatbot', title: 'EduSpark – AI Learning Assistant Bot', link: 'project-detail.html?p=eduspark' },
+      { bg: 'pi-bg1', icon: 'fas fa-store', cat: 'AI / E-Commerce', title: 'LuxeCart – AI Product Recommendation Engine', link: 'project-detail.html?p=luxecart' },
+      { bg: 'pi-bg2', icon: 'fas fa-chart-line', cat: 'AI / Finance Analytics', title: 'FinEdge – Automated Reporting System', link: 'project-detail.html?p=finedge' }
+    ]
+  },
+
+  logo: {
+    title: 'Logo Designing',
+    subtitle: 'Iconic logos and complete brand identity systems that make your business unmistakably memorable.',
+    description: 'Timeless visual identities that tell your brand\'s story and make it impossible to ignore.',
+    icon: 'fas fa-pen-nib',
+    color: 'linear-gradient(135deg, #92400e 0%, #f59e0b 100%)',
+    pills: ['Brand Identity', 'Logo Design', 'Style Guide', 'Typography', 'Color Palette', 'Stationery'],
+    para1: "A great logo is far more than just a pretty mark — it is the cornerstone of your entire brand identity. It communicates your values, personality, and promises at a glance. At HmcxStudio, our brand designers blend strategic thinking with creative artistry to craft logos that are not just beautiful, but deeply meaningful and built to endure. Every logo we design is distinctive, scalable, and versatile across all media.",
+    para2: 'Our logo design process starts with deep brand discovery — understanding your business, audience, competition, and vision. We then explore multiple creative directions through hand-sketched concepts before refining the most compelling approach into polished, professional artwork. Every project includes full brand identity delivery: logo variations, color palette, typography system, and comprehensive brand guidelines.',
+    includes: [
+      { icon: 'fas fa-lightbulb', title: 'Brand Discovery', desc: 'In-depth workshop to define brand personality' },
+      { icon: 'fas fa-pencil-ruler', title: 'Logo Design', desc: 'Multiple unique concepts in vector format' },
+      { icon: 'fas fa-palette', title: 'Color Palette', desc: 'Primary and secondary brand color system' },
+      { icon: 'fas fa-font', title: 'Typography System', desc: 'Font pairing and usage guidelines' },
+      { icon: 'fas fa-id-card', title: 'Brand Stationery', desc: 'Business card, letterhead, envelope design' },
+      { icon: 'fas fa-book', title: 'Brand Guidelines', desc: 'Complete usage guide in PDF format' },
+      { icon: 'fas fa-file-image', title: 'All File Formats', desc: 'AI, EPS, SVG, PNG, JPG — print and digital' },
+      { icon: 'fas fa-redo', title: 'Unlimited Revisions', desc: 'Until you are 100% satisfied with the result' }
+    ],
+    process: [
+      { title: 'Brand Discovery', desc: 'In-depth questionnaire and discovery call to understand your brand values, target audience, competitors, and aspirations.' },
+      { title: 'Concept Exploration', desc: 'Our designers sketch multiple creative directions — different styles, symbols, and typographic approaches for your review.' },
+      { title: 'Design Development', desc: 'The chosen direction is refined into full-color digital artwork with multiple variations and use-case applications.' },
+      { title: 'Final Delivery', desc: 'Complete brand package delivered — all file formats, brand guidelines PDF, and a full handover session.' }
+    ],
+    stats: [
+      { num: '200+', label: 'Logos and brand identities designed for global clients' },
+      { num: '100%', label: 'Client satisfaction rate on our logo design projects' },
+      { num: '48hr', label: 'Average turnaround for initial logo concepts after briefing' }
+    ],
+    relatedProjects: [
+      { bg: 'pi-bg3', icon: 'fas fa-leaf', cat: 'Branding / Logo Design', title: 'GreenRoot – Full Brand Identity System', link: 'project-detail.html?p=greenroot' },
+      { bg: 'pi-bg6', icon: 'fas fa-spa', cat: 'Logo / Wellness Brand', title: 'BloomBotanica – Brand Identity Design', link: 'project-detail.html?p=bloombotanica' },
+      { bg: 'pi-bg4', icon: 'fas fa-graduation-cap', cat: 'Logo / Education', title: 'EduSpark – Complete Brand Refresh', link: 'project-detail.html?p=eduspark' }
+    ]
+  },
+
+  graphic: {
+    title: 'Graphic Designing',
+    subtitle: 'Stunning visual content that grabs attention, communicates your message, and elevates your brand.',
+    description: 'Creative graphic design that transforms your brand\'s visual communication across every channel.',
+    icon: 'fas fa-paint-brush',
+    color: 'linear-gradient(135deg, #be185d 0%, #ec4899 100%)',
+    pills: ['Social Media', 'Ad Creatives', 'Brochures', 'Packaging', 'Presentations', 'Infographics'],
+    para1: 'In a world driven by visual content, the quality of your graphics directly impacts how your brand is perceived. Our graphic design team creates compelling visual content for every touchpoint — from Instagram posts and YouTube thumbnails to billboard ads and product packaging. Each design is crafted with a deep understanding of visual hierarchy, color psychology, and your specific brand aesthetic.',
+    para2: "We work as an extension of your marketing team, producing a consistent stream of high-quality visual assets that maintain brand consistency while staying fresh and engaging. Whether you need a full social media design package, a product brochure, trade show materials, or a deck for your investor pitch, our designers deliver work that makes you proud. Fast turnaround, unlimited revisions, and zero compromise on quality.",
+    includes: [
+      { icon: 'fab fa-instagram', title: 'Social Media Graphics', desc: 'Posts, stories, reels covers, highlights' },
+      { icon: 'fas fa-ad', title: 'Ad Creatives', desc: 'Banners for Google, Facebook, Instagram' },
+      { icon: 'fas fa-book-open', title: 'Brochures & Flyers', desc: 'Print-ready marketing collateral design' },
+      { icon: 'fas fa-box', title: 'Packaging Design', desc: 'Product boxes, labels, wrappers' },
+      { icon: 'fas fa-chart-bar', title: 'Infographics', desc: 'Data visualization and information design' },
+      { icon: 'fas fa-desktop', title: 'Presentation Design', desc: 'PowerPoint, Keynote, pitch decks' },
+      { icon: 'fas fa-image', title: 'Email Templates', desc: 'Branded HTML email newsletter designs' },
+      { icon: 'fas fa-sign', title: 'Outdoor / Signage', desc: 'Banners, standees, hoardings, vehicle wraps' }
+    ],
+    process: [
+      { title: 'Brief & Brand Review', desc: 'We study your brand guidelines, review existing assets, and conduct a detailed creative brief to align on style and goals.' },
+      { title: 'Concept & Drafts', desc: 'Initial design concepts presented for each asset type — layouts, color treatments, and typography options for your review.' },
+      { title: 'Revisions & Refinement', desc: 'Feedback incorporated with precision. We refine until every design perfectly matches your vision and brand standards.' },
+      { title: 'Final Files & Handover', desc: 'Print-ready and web-optimized files delivered in all required formats, organized in a structured asset library.' }
+    ],
+    stats: [
+      { num: '500+', label: 'Graphic design assets created for clients every month' },
+      { num: '3x', label: 'Higher engagement on social posts with our custom graphics' },
+      { num: '48hr', label: 'Typical turnaround for standard social media graphic packages' }
+    ],
+    relatedProjects: [
+      { bg: 'pi-bg6', icon: 'fas fa-spa', cat: 'Graphic Design / Social Media', title: 'BloomBotanica – Visual Campaign Suite', link: 'project-detail.html?p=bloombotanica' },
+      { bg: 'pi-bg3', icon: 'fas fa-leaf', cat: 'Graphic / Brand Collateral', title: 'GreenRoot – Marketing Materials', link: 'project-detail.html?p=greenroot' },
+      { bg: 'pi-bg5', icon: 'fas fa-ad', cat: 'Graphic / Ad Creatives', title: 'RealNest – Property Ad Creative Pack', link: 'project-detail.html?p=realnest' }
+    ]
+  }
+};
+
+/* ============================================================
+   ALL SERVICES (for sidebar)
+   ============================================================ */
+const allServices = [
+  { key: 'web', icon: 'fas fa-laptop-code', label: 'Website Development' },
+  { key: 'maintenance', icon: 'fas fa-tools', label: 'Web Maintenance' },
+  { key: 'ai', icon: 'fas fa-robot', label: 'AI Development' },
+  { key: 'seo', icon: 'fas fa-search', label: 'SEO Optimization' },
+  { key: 'marketing', icon: 'fas fa-bullhorn', label: 'Digital Marketing' },
+  { key: 'ads', icon: 'fas fa-ad', label: 'Ads Management' },
+  { key: 'logo', icon: 'fas fa-pen-nib', label: 'Logo Designing' },
+  { key: 'graphic', icon: 'fas fa-paint-brush', label: 'Graphic Designing' }
+];
+
+/* ============================================================
+   RENDER PAGE
+   ============================================================ */
+function renderPage() {
+  const params = new URLSearchParams(window.location.search);
+  const key = params.get('s') || 'web';
+  const svc = services[key] || services['web'];
+
+  // Page title & meta
+  document.getElementById('pageTitle').textContent = svc.title + ' – HmcxStudio';
+  document.getElementById('pageDesc').setAttribute('content', svc.subtitle);
+
+  // Hero
+  document.getElementById('heroBreadcrumb').textContent = svc.title;
+  document.getElementById('heroIcon').innerHTML = '<i class="' + svc.icon + '"></i>';
+  document.getElementById('heroIcon').style.background = svc.color;
+  document.getElementById('heroIcon').style.color = '#fff';
+  document.getElementById('heroTitleSpan').textContent = svc.title;
+  document.getElementById('heroSubtitle').textContent = svc.subtitle;
+  const pillsEl = document.getElementById('heroPills');
+  pillsEl.innerHTML = '';
+  (svc.pills || []).forEach(function(p) {
+    pillsEl.innerHTML += '<span class="hero-pill">' + p + '</span>';
+  });
+
+  // Content
+  document.getElementById('contentTitle').innerHTML = 'Professional <span>' + svc.title + '</span>';
+  document.getElementById('contentPara1').textContent = svc.para1;
+  document.getElementById('contentPara2').textContent = svc.para2;
+
+  // Includes
+  const incList = document.getElementById('includesList');
+  incList.innerHTML = '';
+  svc.includes.forEach(function(item) {
+    incList.innerHTML += '<div class="include-item">' +
+      '<div class="include-icon"><i class="' + item.icon + '"></i></div>' +
+      '<div class="include-text"><h4>' + item.title + '</h4><p>' + item.desc + '</p></div>' +
+      '</div>';
+  });
+
+  // Process
+  const procList = document.getElementById('processList');
+  procList.innerHTML = '';
+  svc.process.forEach(function(step, i) {
+    procList.innerHTML += '<li>' +
+      '<div class="psl-num">0' + (i + 1) + '</div>' +
+      '<div class="psl-text"><h4>' + step.title + '</h4><p>' + step.desc + '</p></div>' +
+      '</li>';
+  });
+
+  // CTA Card
+  const ctaCard = document.getElementById('ctaCard');
+  ctaCard.style.background = svc.color;
+  document.getElementById('ctaIcon').innerHTML = '<i class="' + svc.icon + '"></i>';
+  document.getElementById('ctaCardDesc').textContent = 'Ready to launch your ' + svc.title.toLowerCase() + ' project? Get a free quote from our experts today.';
+
+  // Other services sidebar
+  const otherList = document.getElementById('otherServicesList');
+  otherList.innerHTML = '';
+  allServices.forEach(function(s) {
+    const activeClass = s.key === key ? ' active-service' : '';
+    otherList.innerHTML += '<a href="service-detail.html?s=' + s.key + '" class="other-service-link' + activeClass + '">' +
+      '<div class="osl-icon"><i class="' + s.icon + '"></i></div>' +
+      '<span>' + s.label + '</span>' +
+      '</a>';
+  });
+
+  // Results
+  document.getElementById('resultsSubtitle').textContent = 'Real numbers from our ' + svc.title.toLowerCase() + ' projects — see the impact we deliver.';
+  const resultsGrid = document.getElementById('resultsGrid');
+  resultsGrid.innerHTML = '';
+  svc.stats.forEach(function(stat) {
+    resultsGrid.innerHTML += '<div class="result-card reveal">' +
+      '<div class="result-num">' + stat.num + '</div>' +
+      '<div class="result-label">' + stat.label + '</div>' +
+      '</div>';
+  });
+
+  // Related Projects
+  const relGrid = document.getElementById('relatedGrid');
+  relGrid.innerHTML = '';
+  svc.relatedProjects.forEach(function(p) {
+    relGrid.innerHTML += '<div class="portfolio-item reveal">' +
+      '<div class="pi-thumb ' + p.bg + '">' +
+        '<i class="' + p.icon + ' pi-thumb-icon"></i>' +
+        '<div class="pi-overlay"><a href="' + p.link + '"><i class="fas fa-external-link-alt"></i> View Project</a></div>' +
+      '</div>' +
+      '<div class="pi-info"><div class="pi-cat">' + p.cat + '</div><div class="pi-title">' + p.title + '</div></div>' +
+      '</div>';
+  });
+}
+
+// Run on load
+renderPage();
+</script>
+</body>
+</html>
