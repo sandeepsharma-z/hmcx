@@ -90,9 +90,9 @@
     /* ── Why Contact Us ── */
     .why-contact { padding: 80px 0; }
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-    .why-card { background: white; border: 1px solid var(--blue-pale); border-radius: 20px; padding: 36px 28px; text-align: center; transition: var(--transition); }
+    .why-card { background: white; border: 1px solid var(--blue-pale); border-radius: 20px; padding: 36px 28px; text-align: center; transition: var(--transition); display: flex; flex-direction: column; align-items: center; }
     .why-card:hover { border-color: var(--blue-main); box-shadow: 0 8px 32px rgba(30,86,200,.1); transform: translateY(-4px); }
-    .why-icon { width: 68px; height: 68px; border-radius: 50%; background: linear-gradient(135deg, var(--blue-main), var(--blue-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin: 0 auto 20px; }
+    .why-icon { width: 68px; height: 68px; min-width: 68px; min-height: 68px; aspect-ratio: 1 / 1; border-radius: 50%; background: linear-gradient(135deg, var(--blue-main), var(--blue-light)); display: flex; align-items: center; justify-content: center; color: white; font-size: 1.5rem; margin: 0 auto 20px; flex: 0 0 68px; }
     .why-card h4 { font-family: 'Space Grotesk', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--text-dark); margin-bottom: 10px; }
     .why-card p { font-size: .9rem; color: var(--text-light); line-height: 1.65; margin: 0; }
 
