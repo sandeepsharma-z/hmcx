@@ -816,6 +816,23 @@ button { cursor: pointer; font-family: inherit; }
 .portfolio-item:hover .pi-overlay { opacity: .92; }
 .pi-overlay a, .pi-overlay span { color: white; font-size: .9rem; font-weight: 600; display: flex; align-items: center; gap: 6px; text-decoration: none; border: 1px solid rgba(255,255,255,.4); padding: 8px 16px; border-radius: 50px; transition: var(--transition); }
 .pi-overlay a:hover { background: rgba(255,255,255,.2); }
+.portfolio-item .pi-overlay { display: none !important; }
+.pi-thumb { border-top-left-radius: 18px; border-top-right-radius: 18px; }
+.pi-thumb.pi-thumb-scroll { background: #e8eef9 !important; }
+.pi-thumb .pi-shot {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  min-height: 100%;
+  transform: translateY(0);
+  transition: transform 2.2s ease;
+  will-change: transform;
+}
+.portfolio-item:hover .pi-thumb .pi-shot {
+  transform: translateY(calc(var(--pi-shift, 0px) * -1));
+}
 .pi-bg1 {
   background-image: linear-gradient(135deg, rgba(30,86,200,.26), rgba(6,182,212,.2)), url('https://picsum.photos/seed/hmcx-p1/1200/800');
   background-size: cover;

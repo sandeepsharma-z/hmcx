@@ -385,6 +385,110 @@
       });
     });
   });  /* ---- Chatbot ---- */
+  const realPortfolioItems = [
+    {
+      slug: 'aabha-jain',
+      title: 'Aabha Jain',
+      cat: 'Personal Brand Website',
+      filter: 'design branding',
+      image: 'assets/img/project screenshots/Aabha Jain/home.png'
+    },
+    {
+      slug: 'amore-pizza-palmdale',
+      title: 'Amore Pizza Palmdale',
+      cat: 'Restaurant Website',
+      filter: 'web marketing',
+      image: 'assets/img/project screenshots/Amore Pizza Palmdale/home.png'
+    },
+    {
+      slug: 'arth-cookware',
+      title: 'Arth Cookware',
+      cat: 'E-Commerce Website',
+      filter: 'web e-commerce',
+      image: 'assets/img/project screenshots/Arth Cookware/home.png'
+    },
+    {
+      slug: 'nu-wellness',
+      title: 'nu wellness',
+      cat: 'Wellness Commerce',
+      filter: 'design marketing',
+      image: 'assets/img/project screenshots/nu wellness/home.png'
+    },
+    {
+      slug: 'pelletiersmiles',
+      title: 'Pelletier Smiles',
+      cat: 'Healthcare Website',
+      filter: 'web',
+      image: 'assets/img/project screenshots/pelletiersmiles/home.png'
+    }
+  ];
+
+  function bindPortfolioImageScroll() {
+    const shots = document.querySelectorAll('.pi-thumb .pi-shot');
+    if (!shots.length) return;
+
+    const setShift = (img) => {
+      const frame = img.closest('.pi-thumb');
+      if (!frame) return;
+      const shift = Math.max(0, img.offsetHeight - frame.offsetHeight);
+      img.style.setProperty('--pi-shift', shift + 'px');
+    };
+
+    shots.forEach((img) => {
+      if (img.complete) setShift(img);
+      img.addEventListener('load', () => setShift(img), { once: true });
+    });
+  }
+
+  function enhancePortfolioCards() {
+    const cards = document.querySelectorAll('.portfolio-item');
+    if (!cards.length) return;
+
+    cards.forEach((card, i) => {
+      const data = realPortfolioItems[i % realPortfolioItems.length];
+      card.setAttribute('data-cat', data.filter);
+
+      const catEl = card.querySelector('.pi-cat');
+      if (catEl) catEl.textContent = data.cat;
+
+      const titleEl = card.querySelector('.pi-title');
+      if (titleEl) titleEl.textContent = data.title;
+
+      const thumb = card.querySelector('.pi-thumb');
+      if (thumb) {
+        thumb.classList.add('pi-thumb-scroll');
+        thumb.innerHTML = '<img class="pi-shot" src="' + data.image + '" alt="' + data.title + ' screenshot" loading="lazy">';
+      }
+
+      const target = 'project-detail.html?p=' + data.slug;
+      card.style.cursor = 'pointer';
+      card.setAttribute('role', 'link');
+      card.setAttribute('tabindex', '0');
+      card.onclick = () => { window.location.href = target; };
+      card.onkeydown = (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          window.location.href = target;
+        }
+      };
+    });
+
+    bindPortfolioImageScroll();
+  }
+
+  enhancePortfolioCards();
+  setTimeout(enhancePortfolioCards, 400);
+  setTimeout(enhancePortfolioCards, 1200);
+  if (document.body) {
+    const portfolioObserver = new MutationObserver(() => {
+      if (document.querySelector('.portfolio-item')) enhancePortfolioCards();
+    });
+    portfolioObserver.observe(document.body, { childList: true, subtree: true });
+  }
+
+  window.addEventListener('resize', bindPortfolioImageScroll);
+
+  /* ---- Chatbot ---- */
   const chatbotFab = document.getElementById('chatbotFab');
   const chatbotPanel = document.getElementById('chatbotPanel');
   const chatbotClose = document.getElementById('chatbotClose');
