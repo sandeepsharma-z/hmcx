@@ -876,7 +876,7 @@ button { cursor: pointer; font-family: inherit; }
 .project-thumb { position: relative; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .project-thumb-placeholder { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font-size: 3.5rem; color: rgba(30,86,200,.3); }
 .project-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-.project-card:hover .project-thumb img { transform: none; }
+.project-card:hover .project-thumb img:not(.project-shot) { transform: none; }
 .project-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(30,86,200,.92), rgba(6,182,212,.88)); display: flex; align-items: center; justify-content: center; gap: 12px; opacity: 0; transition: var(--transition); }
 .project-card:hover .project-thumb-overlay { opacity: 1; }
 .project-thumb-overlay a { color: white; padding: 9px 20px; border: 1.5px solid rgba(255,255,255,.6); border-radius: 50px; font-size: .85rem; font-weight: 600; transition: var(--transition); text-decoration: none; }
