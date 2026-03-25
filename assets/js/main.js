@@ -756,7 +756,7 @@
     setTimeout(() => { document.body.style.opacity = '1'; }, 50);
   });
 
-  console.log('%c🚀 HmcxStudio Website Loaded', 'color:#1e56c8;font-size:14px;font-weight:700');
+  console.log('%cHmcxStudio Website Loaded', 'color:#1e56c8;font-size:14px;font-weight:700');
 })();
 
 
