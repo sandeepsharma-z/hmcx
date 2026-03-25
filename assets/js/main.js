@@ -443,6 +443,11 @@
   let isEnhancingPortfolio = false;
 
   function enhancePortfolioCards() {
+    const isAiServicePage =
+      window.location.pathname.toLowerCase().includes('service-detail.html') &&
+      new URLSearchParams(window.location.search).get('s') === 'ai';
+    if (isAiServicePage) return;
+
     if (isEnhancingPortfolio) return;
     isEnhancingPortfolio = true;
     const cards = document.querySelectorAll('.portfolio-item');

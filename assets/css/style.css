@@ -810,7 +810,7 @@ button { cursor: pointer; font-family: inherit; }
 .pf-btn.active, .pf-btn:hover { background: var(--blue-main); color: white; border-color: var(--blue-main); }
 .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
 .portfolio-item { border-radius: 18px; overflow: hidden; background: white; border: 1px solid var(--blue-pale); transition: var(--transition); cursor: pointer; }
-.portfolio-item:hover { transform: translateY(-8px); box-shadow: 0 20px 50px rgba(30,86,200,.18); }
+.portfolio-item:hover { transform: none; box-shadow: 0 20px 50px rgba(30,86,200,.18); }
 .pi-thumb { height: 200px; position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .pi-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, var(--blue-main), var(--accent)); opacity: 0; transition: opacity .4s; display: flex; align-items: center; justify-content: center; gap: 12px; }
 .portfolio-item:hover .pi-overlay { opacity: .92; }
@@ -872,11 +872,11 @@ button { cursor: pointer; font-family: inherit; }
 .projects-section { padding: 90px 0; background: var(--off-white); }
 .projects-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
 .project-card { background: white; border-radius: 22px; overflow: hidden; border: 1px solid var(--blue-pale); transition: var(--transition); }
-.project-card:hover { transform: translateY(-8px); box-shadow: 0 20px 55px rgba(30,86,200,.18); }
+.project-card:hover { transform: none; box-shadow: 0 20px 55px rgba(30,86,200,.18); }
 .project-thumb { position: relative; height: 220px; overflow: hidden; display: flex; align-items: center; justify-content: center; }
 .project-thumb-placeholder { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; font-size: 3.5rem; color: rgba(30,86,200,.3); }
 .project-thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
-.project-card:hover .project-thumb img { transform: scale(1.08); }
+.project-card:hover .project-thumb img { transform: none; }
 .project-thumb-overlay { position: absolute; inset: 0; background: linear-gradient(135deg, rgba(30,86,200,.92), rgba(6,182,212,.88)); display: flex; align-items: center; justify-content: center; gap: 12px; opacity: 0; transition: var(--transition); }
 .project-card:hover .project-thumb-overlay { opacity: 1; }
 .project-thumb-overlay a { color: white; padding: 9px 20px; border: 1.5px solid rgba(255,255,255,.6); border-radius: 50px; font-size: .85rem; font-weight: 600; transition: var(--transition); text-decoration: none; }
