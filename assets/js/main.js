@@ -440,9 +440,16 @@
     });
   }
 
+  let isEnhancingPortfolio = false;
+
   function enhancePortfolioCards() {
+    if (isEnhancingPortfolio) return;
+    isEnhancingPortfolio = true;
     const cards = document.querySelectorAll('.portfolio-item');
-    if (!cards.length) return;
+    if (!cards.length) {
+      isEnhancingPortfolio = false;
+      return;
+    }
 
     cards.forEach((card, i) => {
       const data = realPortfolioItems[i % realPortfolioItems.length];
@@ -457,7 +464,10 @@
       const thumb = card.querySelector('.pi-thumb');
       if (thumb) {
         thumb.classList.add('pi-thumb-scroll');
-        thumb.innerHTML = '<img class="pi-shot" src="' + data.image + '" alt="' + data.title + ' screenshot" loading="lazy">';
+        const existingShot = thumb.querySelector('.pi-shot');
+        if (!existingShot || existingShot.getAttribute('src') !== data.image) {
+          thumb.innerHTML = '<img class="pi-shot" src="' + data.image + '" alt="' + data.title + ' screenshot" loading="lazy">';
+        }
       }
 
       const target = 'project-detail.html?p=' + data.slug;
@@ -471,17 +481,37 @@
           window.location.href = target;
         }
       };
+      card.setAttribute('data-real-portfolio', '1');
     });
 
     bindPortfolioImageScroll();
+    isEnhancingPortfolio = false;
   }
 
   enhancePortfolioCards();
   setTimeout(enhancePortfolioCards, 400);
   setTimeout(enhancePortfolioCards, 1200);
   if (document.body) {
-    const portfolioObserver = new MutationObserver(() => {
-      if (document.querySelector('.portfolio-item')) enhancePortfolioCards();
+    let observerQueued = false;
+    const portfolioObserver = new MutationObserver((mutations) => {
+      let shouldRun = false;
+      for (const mutation of mutations) {
+        if (!mutation.addedNodes || !mutation.addedNodes.length) continue;
+        for (const node of mutation.addedNodes) {
+          if (node.nodeType !== 1) continue;
+          if (node.matches?.('.portfolio-item') || node.querySelector?.('.portfolio-item')) {
+            shouldRun = true;
+            break;
+          }
+        }
+        if (shouldRun) break;
+      }
+      if (!shouldRun || observerQueued) return;
+      observerQueued = true;
+      requestAnimationFrame(() => {
+        observerQueued = false;
+        enhancePortfolioCards();
+      });
     });
     portfolioObserver.observe(document.body, { childList: true, subtree: true });
   }
