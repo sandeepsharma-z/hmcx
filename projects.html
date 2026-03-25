@@ -55,6 +55,9 @@
       height: 280px;
       background: #e8eef9;
       border-bottom: 1px solid var(--blue-pale);
+      border-top-left-radius: 22px;
+      border-top-right-radius: 22px;
+      overflow: hidden;
     }
 
     .project-shot-frame {
@@ -72,33 +75,13 @@
       width: 100%;
       height: auto;
       min-height: 100%;
-      transition: transform 1.8s ease;
+      transition: transform 2.2s ease;
       transform: translateY(0);
       will-change: transform;
     }
 
     .project-card:hover .project-shot {
       transform: translateY(calc(var(--hover-shift, 0px) * -1));
-    }
-
-    .project-thumb-overlay {
-      background: linear-gradient(180deg, rgba(12, 29, 62, 0.25), rgba(12, 29, 62, 0.75));
-      opacity: 1;
-      align-items: flex-end;
-      justify-content: flex-start;
-      pointer-events: none;
-      padding: 14px;
-    }
-
-    .project-thumb-overlay .project-badge {
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: 999px;
-      color: #fff;
-      padding: 6px 12px;
-      font-size: 0.72rem;
-      letter-spacing: 0.6px;
-      text-transform: uppercase;
-      background: rgba(0, 0, 0, 0.2);
     }
 
     .project-meta {
@@ -309,7 +292,6 @@
                 '<div class="project-shot-frame">',
                   imgTag,
                 '</div>',
-                '<div class="project-thumb-overlay"><span class="project-badge">' + p.categoryLabel + '</span></div>',
               '</div>',
               '<div class="project-body">',
                 '<h3><a href="project-detail.html?p=' + p.slug + '">' + p.name + '</a></h3>',
