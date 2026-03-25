@@ -391,35 +391,35 @@
       title: 'Aabha Jain',
       cat: 'Personal Brand Website',
       filter: 'design branding',
-      image: 'assets/img/project screenshots/Aabha Jain/home.png'
+      image: 'assets/img/project-thumbs/aabha-jain-home.jpg'
     },
     {
       slug: 'amore-pizza-palmdale',
       title: 'Amore Pizza Palmdale',
       cat: 'Restaurant Website',
       filter: 'web marketing',
-      image: 'assets/img/project screenshots/Amore Pizza Palmdale/home.png'
+      image: 'assets/img/project-thumbs/amore-pizza-palmdale-home.jpg'
     },
     {
       slug: 'arth-cookware',
       title: 'Arth Cookware',
       cat: 'E-Commerce Website',
       filter: 'web e-commerce',
-      image: 'assets/img/project screenshots/Arth Cookware/home.png'
+      image: 'assets/img/project-thumbs/arth-cookware-home.jpg'
     },
     {
       slug: 'nu-wellness',
       title: 'nu wellness',
       cat: 'Wellness Commerce',
       filter: 'design marketing',
-      image: 'assets/img/project screenshots/nu wellness/home.png'
+      image: 'assets/img/project-thumbs/nu-wellness-home.jpg'
     },
     {
       slug: 'pelletiersmiles',
       title: 'Pelletier Smiles',
       cat: 'Healthcare Website',
       filter: 'web',
-      image: 'assets/img/project screenshots/pelletiersmiles/home.png'
+      image: 'assets/img/project-thumbs/pelletiersmiles-home.jpg'
     }
   ];
 
@@ -466,7 +466,7 @@
         thumb.classList.add('pi-thumb-scroll');
         const existingShot = thumb.querySelector('.pi-shot');
         if (!existingShot || existingShot.getAttribute('src') !== data.image) {
-          thumb.innerHTML = '<img class="pi-shot" src="' + data.image + '" alt="' + data.title + ' screenshot" loading="lazy">';
+          thumb.innerHTML = '<img class="pi-shot" src="' + data.image + '" alt="' + data.title + ' screenshot" loading="lazy" decoding="async" fetchpriority="low">';
         }
       }
 

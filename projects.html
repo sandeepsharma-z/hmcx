@@ -250,6 +250,13 @@
       var grid = document.getElementById('projectsGrid');
       var filterBar = document.getElementById('filterBar');
       var empty = document.getElementById('projectsEmpty');
+      var thumbBySlug = {
+        'aabha-jain': 'assets/img/project-thumbs/aabha-jain-home.jpg',
+        'amore-pizza-palmdale': 'assets/img/project-thumbs/amore-pizza-palmdale-home.jpg',
+        'arth-cookware': 'assets/img/project-thumbs/arth-cookware-home.jpg',
+        'nu-wellness': 'assets/img/project-thumbs/nu-wellness-home.jpg',
+        'pelletiersmiles': 'assets/img/project-thumbs/pelletiersmiles-home.jpg'
+      };
 
       function categoryLabel(cat) {
         return (cat || '').replace(/-/g, ' ').replace(/\b\w/g, function(c) { return c.toUpperCase(); });
@@ -282,8 +289,9 @@
         empty.style.display = 'none';
         grid.innerHTML = list.map(function(p) {
           var cover = p.images && p.images.length ? p.images[0] : null;
-          var imgTag = cover ?
-            '<img class="project-shot" src="' + cover.path + '" alt="' + p.name + ' screenshot" loading="lazy">' :
+          var cardImage = thumbBySlug[p.slug] || (cover ? cover.path : '');
+          var imgTag = cardImage ?
+            '<img class="project-shot" src="' + cardImage + '" alt="' + p.name + ' screenshot" loading="lazy" decoding="async" fetchpriority="low">' :
             '<div class="project-thumb-placeholder"><i class="fas fa-image"></i></div>';
 
           return [
