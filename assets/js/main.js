@@ -489,32 +489,8 @@
   }
 
   enhancePortfolioCards();
-  setTimeout(enhancePortfolioCards, 400);
-  setTimeout(enhancePortfolioCards, 1200);
-  if (document.body) {
-    let observerQueued = false;
-    const portfolioObserver = new MutationObserver((mutations) => {
-      let shouldRun = false;
-      for (const mutation of mutations) {
-        if (!mutation.addedNodes || !mutation.addedNodes.length) continue;
-        for (const node of mutation.addedNodes) {
-          if (node.nodeType !== 1) continue;
-          if (node.matches?.('.portfolio-item') || node.querySelector?.('.portfolio-item')) {
-            shouldRun = true;
-            break;
-          }
-        }
-        if (shouldRun) break;
-      }
-      if (!shouldRun || observerQueued) return;
-      observerQueued = true;
-      requestAnimationFrame(() => {
-        observerQueued = false;
-        enhancePortfolioCards();
-      });
-    });
-    portfolioObserver.observe(document.body, { childList: true, subtree: true });
-  }
+  setTimeout(enhancePortfolioCards, 300);
+  window.addEventListener('load', enhancePortfolioCards, { once: true });
 
   window.addEventListener('resize', bindPortfolioImageScroll);
 

@@ -1084,64 +1084,8 @@
    chatbotPanel.classList.remove('open');
   });
  }
-</script> <style id="portfolio-real-sync-style">
-  .portfolio-item .pi-overlay{display:none!important}
-  .pi-thumb{border-top-left-radius:18px;border-top-right-radius:18px;overflow:hidden}
-  .pi-thumb.pi-thumb-scroll{background:#e8eef9!important}
-  .pi-thumb .pi-shot{position:absolute;left:0;top:0;width:100%;height:auto;min-height:100%;transform:translateY(0);transition:transform 2.2s ease;will-change:transform}
-  .portfolio-item:hover .pi-thumb .pi-shot{transform:translateY(calc(var(--pi-shift,0px)*-1))}
-</style>
-<script id="portfolio-real-sync">
-(function(){
-  var items=[
-    {slug:'aabha-jain',title:'Aabha Jain',cat:'Personal Brand Website',filter:'design branding',image:'assets/img/project screenshots/Aabha Jain/home.png'},
-    {slug:'amore-pizza-palmdale',title:'Amore Pizza Palmdale',cat:'Restaurant Website',filter:'web marketing',image:'assets/img/project screenshots/Amore Pizza Palmdale/home.png'},
-    {slug:'arth-cookware',title:'Arth Cookware',cat:'E-Commerce Website',filter:'web e-commerce',image:'assets/img/project screenshots/Arth Cookware/home.png'},
-    {slug:'nu-wellness',title:'nu wellness',cat:'Wellness Commerce',filter:'design marketing',image:'assets/img/project screenshots/nu wellness/home.png'},
-    {slug:'pelletiersmiles',title:'Pelletier Smiles',cat:'Healthcare Website',filter:'web',image:'assets/img/project screenshots/pelletiersmiles/home.png'}
-  ];
+</script> </body> </html>
 
-  function setShift(img){
-    var frame=img.closest('.pi-thumb');
-    if(!frame) return;
-    var shift=Math.max(0,img.offsetHeight-frame.offsetHeight);
-    img.style.setProperty('--pi-shift',shift+'px');
-  }
-
-  function apply(){
-    var cards=document.querySelectorAll('.portfolio-item');
-    if(!cards.length) return;
-
-    cards.forEach(function(card,i){
-      var data=items[i%items.length];
-      card.setAttribute('data-cat',data.filter);
-      var cat=card.querySelector('.pi-cat'); if(cat) cat.textContent=data.cat;
-      var title=card.querySelector('.pi-title'); if(title) title.textContent=data.title;
-      var thumb=card.querySelector('.pi-thumb');
-      if(thumb){
-        thumb.classList.add('pi-thumb-scroll');
-        thumb.innerHTML='<img class="pi-shot" src="'+data.image+'" alt="'+data.title+' screenshot" loading="lazy">';
-      }
-      var target='project-detail.html?p='+data.slug;
-      card.style.cursor='pointer';
-      card.onclick=function(){window.location.href=target;};
-      card.setAttribute('role','link');
-      card.setAttribute('tabindex','0');
-      card.onkeydown=function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();window.location.href=target;}};
-    });
-
-    document.querySelectorAll('.pi-thumb .pi-shot').forEach(function(img){
-      if(img.complete){setShift(img);}else{img.addEventListener('load',function(){setShift(img);},{once:true});}
-    });
-  }
-
-  apply();
-  setTimeout(apply,400);
-  setTimeout(apply,1200);
-  window.addEventListener('resize',apply);
-})();
-</script>
-</body> </html>
 
 
 
