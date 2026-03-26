@@ -75,9 +75,17 @@
       width: 100%;
       height: auto;
       min-height: 100%;
+      max-height: none;
+      object-fit: unset;
       transition: transform var(--project-scroll-duration, 6s) linear;
       transform: translateY(0);
       will-change: transform;
+    }
+
+    .project-shot-frame .project-shot {
+      height: auto !important;
+      min-height: 100% !important;
+      object-fit: unset !important;
     }
 
     .project-card:hover .project-shot {
