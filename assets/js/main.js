@@ -391,35 +391,45 @@
       title: 'Aabha Jain',
       cat: 'Personal Brand Website',
       filter: 'design branding',
-      image: 'assets/img/project-thumbs/aabha-jain-home.jpg'
+      image: 'assets/img/project-thumbs/aabha-jain-home.jpg',
+      siteLabel: 'Website: Aabha Jain',
+      summary: 'Personal brand positioning site with clear storytelling and lead-friendly flow.'
     },
     {
       slug: 'amore-pizza-palmdale',
       title: 'Amore Pizza Palmdale',
       cat: 'Restaurant Website',
       filter: 'web marketing',
-      image: 'assets/img/project-thumbs/amore-pizza-palmdale-home.jpg'
+      image: 'assets/img/project-thumbs/amore-pizza-palmdale-home.jpg',
+      siteLabel: 'Website: Amore Pizza Palmdale',
+      summary: 'Restaurant menu, offers, and conversion-focused ordering journey.'
     },
     {
       slug: 'arth-cookware',
       title: 'Arth Cookware',
       cat: 'E-Commerce Website',
       filter: 'web e-commerce',
-      image: 'assets/img/project-thumbs/arth-cookware-home.jpg'
+      image: 'assets/img/project-thumbs/arth-cookware-home.jpg',
+      siteLabel: 'Website: Arth Cookware',
+      summary: 'Product-first e-commerce layout built for trust, speed, and repeat purchases.'
     },
     {
       slug: 'nu-wellness',
       title: 'nu wellness',
       cat: 'Wellness Commerce',
       filter: 'design marketing',
-      image: 'assets/img/project-thumbs/nu-wellness-home.jpg'
+      image: 'assets/img/project-thumbs/nu-wellness-home.jpg',
+      siteLabel: 'Website: nu wellness',
+      summary: 'Wellness brand storefront designed for premium visuals and high product discovery.'
     },
     {
       slug: 'pelletiersmiles',
       title: 'Pelletier Smiles',
       cat: 'Healthcare Website',
       filter: 'web',
-      image: 'assets/img/project-thumbs/pelletiersmiles-home.jpg'
+      image: 'assets/img/project-thumbs/pelletiersmiles-home.jpg',
+      siteLabel: 'Website: Pelletier Smiles',
+      summary: 'Healthcare website with service clarity, appointment flow, and credibility sections.'
     }
   ];
 
@@ -432,6 +442,8 @@
       if (!frame) return;
       const shift = Math.max(0, img.offsetHeight - frame.offsetHeight);
       img.style.setProperty('--pi-shift', shift + 'px');
+      const durationSeconds = Math.max(4, Math.min(11, shift / 120));
+      img.style.setProperty('--pi-scroll-duration', durationSeconds.toFixed(2) + 's');
     };
 
     shots.forEach((img) => {
@@ -466,6 +478,25 @@
       const titleEl = card.querySelector('.pi-title');
       if (titleEl) titleEl.textContent = data.title;
 
+      const infoEl = card.querySelector('.pi-info');
+      if (infoEl) {
+        let siteEl = infoEl.querySelector('.pi-site');
+        if (!siteEl) {
+          siteEl = document.createElement('div');
+          siteEl.className = 'pi-site';
+          infoEl.appendChild(siteEl);
+        }
+        siteEl.textContent = data.siteLabel || ('Website: ' + data.title);
+
+        let descEl = infoEl.querySelector('.pi-desc');
+        if (!descEl) {
+          descEl = document.createElement('div');
+          descEl.className = 'pi-desc';
+          infoEl.appendChild(descEl);
+        }
+        descEl.textContent = data.summary || 'High-performing website crafted for real business growth.';
+      }
+
       const thumb = card.querySelector('.pi-thumb');
       if (thumb) {
         thumb.classList.add('pi-thumb-scroll');
@@ -498,6 +529,58 @@
   window.addEventListener('load', enhancePortfolioCards, { once: true });
 
   window.addEventListener('resize', bindPortfolioImageScroll);
+
+  function enhanceTechStackIcons() {
+    const techMap = {
+      'react.js': 'react.svg',
+      'node.js': 'nodedotjs.svg',
+      'wordpress': 'wordpress.svg',
+      'woocommerce': 'woocommerce.svg',
+      'google seo': 'google.svg',
+      'analytics': 'googleanalytics.svg',
+      'figma': 'figma.svg',
+      'adobe suite': 'adobe.svg',
+      'meta ads': 'meta.svg',
+      'google ads': 'googleads.svg',
+      'openai': 'openai.svg',
+      'aws / cloud': 'amazonwebservices.svg',
+      'claude': 'anthropic.svg',
+      'shopify': 'shopify.svg',
+      'python': 'python.svg',
+      'express.js': 'express.svg',
+      'php': 'php.svg',
+      'laravel': 'laravel.svg',
+      'mysql': 'mysql.svg',
+      'mongodb': 'mongodb.svg',
+      'git': 'git.svg',
+    };
+
+    document.querySelectorAll('.tech-logo').forEach((card) => {
+      const nameEl = card.querySelector('.tl-name');
+      const iconWrap = card.querySelector('.tl-icon');
+      if (!nameEl || !iconWrap) return;
+
+      const key = (nameEl.textContent || '').trim().toLowerCase();
+      const file = techMap[key];
+      if (!file) return;
+
+      let img = iconWrap.querySelector('.tl-icon-img');
+      if (!img) {
+        img = document.createElement('img');
+        img.className = 'tl-icon-img';
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        img.alt = (nameEl.textContent || '').trim() + ' logo';
+        iconWrap.appendChild(img);
+      }
+      img.src = 'assets/img/tech-icons/' + file;
+
+      const fallback = iconWrap.querySelector('.tl-icon-fallback');
+      if (fallback) fallback.style.display = 'none';
+    });
+  }
+
+  enhanceTechStackIcons();
 
   /* ---- Chatbot ---- */
   const chatbotFab = document.getElementById('chatbotFab');
