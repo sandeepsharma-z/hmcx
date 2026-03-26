@@ -289,7 +289,8 @@
         empty.style.display = 'none';
         grid.innerHTML = list.map(function(p) {
           var cover = p.images && p.images.length ? p.images[0] : null;
-          var cardImage = thumbBySlug[p.slug] || (cover ? cover.path : '');
+          var cardImage = cover && cover.path ? cover.path : (thumbBySlug[p.slug] || '');
+          if (cardImage) cardImage = encodeURI(cardImage);
           var imgTag = cardImage ?
             '<img class="project-shot" src="' + cardImage + '" alt="' + p.name + ' screenshot" loading="lazy" decoding="async" fetchpriority="low">' :
             '<div class="project-thumb-placeholder"><i class="fas fa-image"></i></div>';
