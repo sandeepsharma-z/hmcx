@@ -77,7 +77,7 @@
       min-height: 100%;
       max-height: none;
       object-fit: unset;
-      transition: transform var(--project-scroll-duration, 28s) linear;
+      transition: transform var(--project-scroll-duration, 6s) linear;
       transform: translateY(0);
       will-change: transform;
     }
@@ -345,7 +345,7 @@
           if (!frame) return;
           var shift = Math.max(0, img.offsetHeight - frame.offsetHeight);
           img.style.setProperty('--hover-shift', shift + 'px');
-          var durationSeconds = Math.max(18, Math.min(90, shift / 180));
+          var durationSeconds = Math.max(4, Math.min(11, shift / 120));
           img.style.setProperty('--project-scroll-duration', durationSeconds.toFixed(2) + 's');
         }
 
