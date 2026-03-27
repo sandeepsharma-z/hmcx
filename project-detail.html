@@ -99,10 +99,29 @@
       background: #f0f4fb;
     }
 
-    .detail-gallery-item img {
+    .detail-shot-frame {
+      position: relative;
+      height: 280px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #0d1f3f, #1e56c8);
+    }
+
+    .detail-shot {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: auto;
+      min-height: 100%;
+      max-height: none;
+      object-fit: unset;
       display: block;
+      transition: transform var(--detail-scroll-duration, 10s) linear;
+      will-change: transform;
+    }
+
+    .detail-gallery-item:hover .detail-shot {
+      transform: translateY(calc(var(--detail-shift, 0px) * -1));
     }
 
     .detail-gallery-caption {
@@ -136,6 +155,10 @@
 
       .hero-shot-frame {
         height: 420px;
+      }
+
+      .detail-shot-frame {
+        height: 230px;
       }
     }
   </style>
@@ -334,6 +357,24 @@
       var galleryGrid = document.getElementById('galleryGrid');
       var stackWrap = document.getElementById('stackWrap');
 
+      function detailedCopy(kind) {
+        var stackText = (project.stack || []).join(', ');
+
+        if (kind === 'overview') {
+          return project.summary + ' This engagement focused on aligning brand communication, user flow, and conversion intent across key sections. We structured the page journey so visitors can quickly understand value, evaluate trust signals, and move toward action without friction.';
+        }
+        if (kind === 'challenge') {
+          return project.challenge + ' Along with visual consistency, we also had to ensure readability, section hierarchy, and call-to-action visibility for mobile-first users where attention span is limited and decisions happen quickly.';
+        }
+        if (kind === 'solution') {
+          return project.solution + ' The implementation combined content prioritization, clean component spacing, and modular layout blocks, while keeping performance and maintainability in mind. Core stack elements used in this project included ' + stackText + '.';
+        }
+        if (kind === 'outcome') {
+          return project.outcome + ' Post-delivery, the experience became more structured for users and easier for the team to scale with future content, campaigns, and landing page enhancements.';
+        }
+        return '';
+      }
+
       heroName.textContent = project.name;
       crumbName.textContent = project.name;
       heroSummary.textContent = project.summary;
@@ -380,23 +421,52 @@
         return '<div class="overview-item"><span class="k">' + item.k + '</span><span class="v">' + item.v + '</span></div>';
       }).join('');
 
-      document.getElementById('overviewText').textContent = project.summary;
-      document.getElementById('challengeText').textContent = project.challenge;
-      document.getElementById('solutionText').textContent = project.solution;
-      document.getElementById('outcomeText').textContent = project.outcome;
+      document.getElementById('overviewText').textContent = detailedCopy('overview');
+      document.getElementById('challengeText').textContent = detailedCopy('challenge');
+      document.getElementById('solutionText').textContent = detailedCopy('solution');
+      document.getElementById('outcomeText').textContent = detailedCopy('outcome');
 
       stackWrap.innerHTML = (project.stack || []).map(function(item) {
         return '<span class="tech-badge">' + item + '</span>';
       }).join('');
 
       galleryGrid.innerHTML = (project.images || []).map(function(img, idx) {
+        var imgPath = encodeURI(img.path);
         return [
           '<figure class="detail-gallery-item">',
-            '<img src="' + img.path + '" alt="' + project.name + ' ' + img.label + ' screen" loading="lazy">',
+            '<div class="detail-shot-frame">',
+              '<img class="detail-shot" src="' + imgPath + '" alt="' + project.name + ' ' + img.label + ' screen" loading="lazy">',
+            '</div>',
             '<figcaption class="detail-gallery-caption">' + (idx === 0 ? 'Home' : img.label) + '</figcaption>',
           '</figure>'
         ].join('');
       }).join('');
+
+      function setupDetailGalleryScroll() {
+        var detailShots = galleryGrid.querySelectorAll('.detail-shot');
+
+        function computeDetailShift(img) {
+          var frame = img.closest('.detail-shot-frame');
+          var card = img.closest('.detail-gallery-item');
+          if (!frame || !card) return;
+
+          var shift = Math.max(0, img.offsetHeight - frame.offsetHeight);
+          card.style.setProperty('--detail-shift', shift + 'px');
+          var durationSeconds = Math.max(8, Math.min(26, shift / 50));
+          img.style.setProperty('--detail-scroll-duration', durationSeconds.toFixed(2) + 's');
+        }
+
+        detailShots.forEach(function(img) {
+          if (img.complete) computeDetailShift(img);
+          img.addEventListener('load', function() { computeDetailShift(img); }, { once: true });
+        });
+
+        window.addEventListener('resize', function() {
+          detailShots.forEach(function(img) { computeDetailShift(img); });
+        });
+      }
+
+      setupDetailGalleryScroll();
 
       document.getElementById('projectBody').style.display = 'block';
     })();
