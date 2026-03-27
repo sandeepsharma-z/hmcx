@@ -847,7 +847,7 @@ function renderPage() {
   const resultsGrid = document.getElementById('resultsGrid');
   resultsGrid.innerHTML = '';
   svc.stats.forEach(function(stat) {
-    resultsGrid.innerHTML += '<div class="result-card reveal">' +
+    resultsGrid.innerHTML += '<div class="result-card reveal visible">' +
       '<div class="result-num">' + stat.num + '</div>' +
       '<div class="result-label">' + stat.label + '</div>' +
       '</div>';
@@ -857,7 +857,7 @@ function renderPage() {
   const relGrid = document.getElementById('relatedGrid');
   relGrid.innerHTML = '';
   svc.relatedProjects.forEach(function(p) {
-    relGrid.innerHTML += '<div class="portfolio-item reveal">' +
+    relGrid.innerHTML += '<div class="portfolio-item reveal visible">' +
       '<div class="pi-thumb ' + p.bg + '">' +
         '<i class="' + p.icon + ' pi-thumb-icon"></i>' +
         '<div class="pi-overlay"><a href="' + p.link + '"><i class="fas fa-external-link-alt"></i> View Project</a></div>' +
