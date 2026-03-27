@@ -27,10 +27,30 @@
       background: rgba(255, 255, 255, 0.06);
     }
 
-    .hero-shot-wrap img {
+    .hero-shot-frame {
+      position: relative;
+      width: 100%;
+      height: 560px;
+      overflow: hidden;
+      background: linear-gradient(180deg, #0d1f3f, #1e56c8);
+    }
+
+    .hero-shot {
+      position: absolute;
+      left: 0;
+      top: 0;
       width: 100%;
       height: auto;
+      min-height: 100%;
+      max-height: none;
+      object-fit: unset;
+      transition: transform var(--hero-scroll-duration, 12s) linear;
       display: block;
+      will-change: transform;
+    }
+
+    .hero-shot-wrap:hover .hero-shot {
+      transform: translateY(calc(var(--hero-shift, 0px) * -1));
     }
 
     .project-overview-block {
@@ -112,6 +132,10 @@
     @media (max-width: 768px) {
       .project-overview-block {
         grid-template-columns: 1fr;
+      }
+
+      .hero-shot-frame {
+        height: 420px;
       }
     }
   </style>
@@ -324,8 +348,28 @@
 
       var homeImage = (project.images || [])[0];
       if (homeImage) {
-        heroShotWrap.innerHTML = '<img src="' + homeImage.path + '" alt="' + project.name + ' home screen">';
+        var heroPath = encodeURI(homeImage.path);
+        heroShotWrap.innerHTML = '<div class="hero-shot-frame"><img class="hero-shot" src="' + heroPath + '" alt="' + project.name + ' home screen"></div>';
       }
+
+      function setupHeroShotScroll() {
+        var heroShot = heroShotWrap.querySelector('.hero-shot');
+        var frame = heroShotWrap.querySelector('.hero-shot-frame');
+        if (!heroShot || !frame) return;
+
+        function computeHeroShift() {
+          var shift = Math.max(0, heroShot.offsetHeight - frame.offsetHeight);
+          heroShot.style.setProperty('--hero-shift', shift + 'px');
+          var durationSeconds = Math.max(8, Math.min(24, shift / 60));
+          heroShot.style.setProperty('--hero-scroll-duration', durationSeconds.toFixed(2) + 's');
+        }
+
+        if (heroShot.complete) computeHeroShift();
+        heroShot.addEventListener('load', computeHeroShift, { once: true });
+        window.addEventListener('resize', computeHeroShift);
+      }
+
+      setupHeroShotScroll();
 
       overviewGrid.innerHTML = [
         { k: 'Client', v: project.client },
