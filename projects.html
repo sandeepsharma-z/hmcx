@@ -77,7 +77,7 @@
       min-height: 100%;
       max-height: none;
       object-fit: unset;
-      transition: transform var(--project-scroll-duration, 6s) linear;
+      transition: transform var(--project-scroll-duration, 18s) linear;
       transform: translateY(0);
       will-change: transform;
     }
@@ -86,6 +86,7 @@
       height: auto !important;
       min-height: 100% !important;
       object-fit: unset !important;
+      transition: transform var(--project-scroll-duration, 18s) linear !important;
     }
 
     .project-card:hover .project-shot {
@@ -344,9 +345,8 @@
           var frame = img.closest('.project-shot-frame');
           if (!frame) return;
           var shift = Math.max(0, img.offsetHeight - frame.offsetHeight);
-          var effectiveShift = Math.min(shift, 720);
-          img.style.setProperty('--hover-shift', effectiveShift + 'px');
-          var durationSeconds = Math.max(6, Math.min(12, effectiveShift / 60));
+          img.style.setProperty('--hover-shift', shift + 'px');
+          var durationSeconds = Math.max(14, shift / 25);
           img.style.setProperty('--project-scroll-duration', durationSeconds.toFixed(2) + 's');
         }
 
