@@ -101,7 +101,7 @@
 
     .detail-shot-frame {
       position: relative;
-      height: 280px;
+      height: 320px;
       overflow: hidden;
       background: linear-gradient(180deg, #0d1f3f, #1e56c8);
     }
@@ -118,6 +118,17 @@
       display: block;
       transition: transform var(--detail-scroll-duration, 10s) linear;
       will-change: transform;
+    }
+
+    /* Override global .project-gallery-grid img rules so vertical scroll works */
+    .detail-shot-frame .detail-shot {
+      width: 100% !important;
+      height: auto !important;
+      min-height: 100% !important;
+      max-height: none !important;
+      aspect-ratio: auto !important;
+      object-fit: unset !important;
+      transition: transform var(--detail-scroll-duration, 12s) linear !important;
     }
 
     .detail-gallery-item:hover .detail-shot {
@@ -158,7 +169,7 @@
       }
 
       .detail-shot-frame {
-        height: 230px;
+        height: 260px;
       }
     }
   </style>
@@ -431,7 +442,7 @@
 
           var shift = Math.max(0, img.offsetHeight - frame.offsetHeight);
           card.style.setProperty('--detail-shift', shift + 'px');
-          var durationSeconds = Math.max(8, Math.min(26, shift / 50));
+          var durationSeconds = Math.max(10, Math.min(28, shift / 40));
           img.style.setProperty('--detail-scroll-duration', durationSeconds.toFixed(2) + 's');
         }
 
