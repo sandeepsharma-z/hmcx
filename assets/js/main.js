@@ -387,13 +387,13 @@
   });  /* ---- Chatbot ---- */
   const realPortfolioItems = [
     {
-      slug: 'aabha-jain',
-      title: 'Aabha Jain',
-      cat: 'Personal Brand Website',
-      filter: 'design branding',
-      image: 'assets/img/project-thumbs/aabha-jain-home.jpg',
-      siteLabel: 'Website: Aabha Jain',
-      summary: 'Personal brand positioning site with clear storytelling and lead-friendly flow.'
+      slug: 'nutridate-with-priyanka',
+      title: 'Nutridate with Priyanka',
+      cat: 'Nutrition Website',
+      filter: 'web wellness',
+      image: 'assets/img/project screenshots/Nutridate with Priyanka/home.png',
+      siteLabel: 'Website: Nutridate with Priyanka',
+      summary: 'Nutrition coaching website focused on trust, transformation programs, and high-quality consultation leads.'
     },
     {
       slug: 'amore-pizza-palmdale',
@@ -430,6 +430,15 @@
       image: 'assets/img/project-thumbs/pelletiersmiles-home.jpg',
       siteLabel: 'Website: Pelletier Smiles',
       summary: 'Healthcare website with service clarity, appointment flow, and credibility sections.'
+    },
+    {
+      slug: 'mountain-breeze',
+      title: 'Mountain Breeze',
+      cat: 'Product Commerce Website',
+      filter: 'web e-commerce',
+      image: 'assets/img/project screenshots/Mountain Breeze/home.png',
+      siteLabel: 'Website: Mountain Breeze',
+      summary: 'Product commerce website crafted for fast product discovery, clean browsing, and trade enquiry conversion.'
     }
   ];
 
@@ -469,7 +478,12 @@
     }
 
     cards.forEach((card, i) => {
-      const data = realPortfolioItems[i % realPortfolioItems.length];
+      const data = realPortfolioItems[i];
+      if (!data) {
+        card.style.display = 'none';
+        return;
+      }
+      card.style.display = '';
       card.setAttribute('data-cat', data.filter);
 
       const catEl = card.querySelector('.pi-cat');
