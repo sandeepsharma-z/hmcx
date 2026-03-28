@@ -105,5 +105,115 @@ window.HMCX_PROJECTS = [
       { label: "Our Office", path: "assets/img/project screenshots/pelletiersmiles/our office.png" },
       { label: "Patient Info", path: "assets/img/project screenshots/pelletiersmiles/patient info.png" }
     ]
+  },
+  {
+    slug: "briton-byte",
+    name: "Briton Byte",
+    client: "Briton Byte",
+    category: "technology",
+    categoryLabel: "Technology Website",
+    year: "2025",
+    month: "Apr 2025",
+    location: "India",
+    stack: ["Corporate Website", "Web Development", "Mobile App Pages"],
+    summary: "Technology services website structured to present web and mobile capabilities with clear service-first communication.",
+    challenge: "The brand needed one polished digital presence that could explain multiple tech offerings without confusing users.",
+    solution: "We designed focused homepage, about, web development, mobile app, and contact screens with clean section hierarchy.",
+    outcome: "Stronger service clarity and better visitor movement from service discovery to contact intent.",
+    images: [
+      { label: "Home", path: "assets/img/project screenshots/Briton Byte/home.png" },
+      { label: "About", path: "assets/img/project screenshots/Briton Byte/about.png" },
+      { label: "Web Development", path: "assets/img/project screenshots/Briton Byte/web-development.png" },
+      { label: "Mobile App Development", path: "assets/img/project screenshots/Briton Byte/mobile-app-development.png" },
+      { label: "Contact", path: "assets/img/project screenshots/Briton Byte/contact.png" }
+    ]
+  },
+  {
+    slug: "mountain-breeze",
+    name: "Mountain Breeze",
+    client: "Mountain Breeze",
+    category: "ecommerce",
+    categoryLabel: "Product Commerce Website",
+    year: "2025",
+    month: "May 2025",
+    location: "India",
+    stack: ["Brand Storefront", "Product Pages", "Trade Enquiry Flow"],
+    summary: "Breath freshener brand website crafted for product storytelling, clean browsing, and trade enquiry conversion.",
+    challenge: "The site had to balance D2C product messaging with B2B trade intent while keeping navigation lightweight.",
+    solution: "We built home, about, shop, and enquiry-focused pages with stronger product context and quick action points.",
+    outcome: "Improved product discoverability and clearer user paths for both buyers and wholesale enquiries.",
+    images: [
+      { label: "Home", path: "assets/img/project screenshots/Mountain Breeze/home.png" },
+      { label: "About", path: "assets/img/project screenshots/Mountain Breeze/about.png" },
+      { label: "Shop", path: "assets/img/project screenshots/Mountain Breeze/shop.png" },
+      { label: "Trade Enquiry", path: "assets/img/project screenshots/Mountain Breeze/trade-enquiry.png" }
+    ]
+  },
+  {
+    slug: "nishan-warehousing",
+    name: "Nishan Warehousing",
+    client: "Nishan Warehousing",
+    category: "logistics",
+    categoryLabel: "Logistics Website",
+    year: "2025",
+    month: "Jun 2025",
+    location: "Canada",
+    stack: ["Service Website", "Storage Pages", "Bilingual Contact"],
+    summary: "Warehousing services website built for service trust, storage capability visibility, and easier enquiry generation.",
+    challenge: "The business needed a straightforward site that could explain operations clearly and support multi-language inquiries.",
+    solution: "We created structured home, about, storage, and contact pages including French contact support for broader accessibility.",
+    outcome: "Better communication of warehousing services and a clearer lead path for potential clients.",
+    images: [
+      { label: "Home", path: "assets/img/project screenshots/Nishan Warehousing/home.png" },
+      { label: "About", path: "assets/img/project screenshots/Nishan Warehousing/about.png" },
+      { label: "Storage", path: "assets/img/project screenshots/Nishan Warehousing/storage.png" },
+      { label: "Contact", path: "assets/img/project screenshots/Nishan Warehousing/contact.png" },
+      { label: "Contact (FR)", path: "assets/img/project screenshots/Nishan Warehousing/contact-fr.png" }
+    ]
+  },
+  {
+    slug: "nutridate-with-priyanka",
+    name: "Nutridate with Priyanka",
+    client: "Nutridate with Priyanka",
+    category: "wellness",
+    categoryLabel: "Nutrition Website",
+    year: "2025",
+    month: "Aug 2025",
+    location: "Kolkata, India",
+    stack: ["Personal Brand Website", "Program Pages", "Health Content"],
+    summary: "Nutrition coaching website designed to position expertise, highlight program outcomes, and drive consultations.",
+    challenge: "The platform needed to communicate trust and results while presenting multiple health programs in a clear flow.",
+    solution: "We organized home, about, transformation program, PCOS plan, blog, and contact pages with strong content hierarchy.",
+    outcome: "Higher credibility perception and smoother journey from information discovery to consultation enquiry.",
+    images: [
+      { label: "Home", path: "assets/img/project screenshots/Nutridate with Priyanka/home.png" },
+      { label: "About", path: "assets/img/project screenshots/Nutridate with Priyanka/about.png" },
+      { label: "12 Week Transformation", path: "assets/img/project screenshots/Nutridate with Priyanka/12-week-transformation.png" },
+      { label: "PCOS Diet Plan", path: "assets/img/project screenshots/Nutridate with Priyanka/pcos-diet-plan.png" },
+      { label: "Blog", path: "assets/img/project screenshots/Nutridate with Priyanka/blog.png" },
+      { label: "Contact", path: "assets/img/project screenshots/Nutridate with Priyanka/contact.png" }
+    ]
+  },
+  {
+    slug: "paarhk-real-estate",
+    name: "Paarhk Real Estate",
+    client: "Paarhk Real Estate",
+    category: "real-estate",
+    categoryLabel: "Real Estate Website",
+    year: "2025",
+    month: "Sep 2025",
+    location: "Dubai, UAE",
+    stack: ["Property Listings", "Mortgage Calculator", "Lead Capture"],
+    summary: "Real estate website crafted for luxury property discovery, financing support, and faster inquiry conversion.",
+    challenge: "The brand needed to present high-value property options with trust while simplifying decision support for buyers.",
+    solution: "We built dedicated home, property listings, mortgage calculator, blog, and contact pages for guided buyer journeys.",
+    outcome: "Improved listing engagement and stronger conversion intent from browsing to consultation requests.",
+    images: [
+      { label: "Home", path: "assets/img/project screenshots/Paarhk Real Estate/home.png" },
+      { label: "Buy Property", path: "assets/img/project screenshots/Paarhk Real Estate/buy-property.png" },
+      { label: "Mortgage Calculator", path: "assets/img/project screenshots/Paarhk Real Estate/mortgage-calculator.png" },
+      { label: "Blog", path: "assets/img/project screenshots/Paarhk Real Estate/blog.png" },
+      { label: "Contact", path: "assets/img/project screenshots/Paarhk Real Estate/contact.png" }
+    ]
   }
 ];
