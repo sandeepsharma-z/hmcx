@@ -92,6 +92,45 @@
       line-height: 1.72;
     }
 
+    .detail-rich-block {
+      margin-top: 20px;
+      background: #fff;
+      border: 1px solid var(--blue-pale);
+      border-radius: 16px;
+      padding: 18px 18px 16px;
+    }
+
+    .detail-rich-block h3 {
+      margin: 0 0 10px;
+      font-size: 1.08rem;
+    }
+
+    .detail-rich-block p {
+      margin: 0;
+    }
+
+    .detail-points {
+      margin: 12px 0 0;
+      padding: 0;
+      list-style: none;
+      display: grid;
+      gap: 8px;
+    }
+
+    .detail-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      color: var(--text-mid);
+      line-height: 1.55;
+    }
+
+    .detail-points li i {
+      color: var(--blue-main);
+      margin-top: 4px;
+      font-size: 0.75rem;
+    }
+
     .detail-gallery-item {
       border-radius: 14px;
       overflow: hidden;
@@ -292,6 +331,24 @@
             <h2>Outcome</h2>
             <p id="outcomeText"></p>
 
+            <div class="detail-rich-block">
+              <h3><i class="fas fa-bullseye" style="color:var(--blue-main);margin-right:8px"></i>Business Goals We Solved</h3>
+              <p id="goalText"></p>
+              <ul id="goalPoints" class="detail-points"></ul>
+            </div>
+
+            <div class="detail-rich-block">
+              <h3><i class="fas fa-sitemap" style="color:var(--blue-main);margin-right:8px"></i>Execution Highlights</h3>
+              <p id="executionText"></p>
+              <ul id="executionPoints" class="detail-points"></ul>
+            </div>
+
+            <div class="detail-rich-block">
+              <h3><i class="fas fa-chart-line" style="color:var(--blue-main);margin-right:8px"></i>Client Growth Readiness</h3>
+              <p id="growthText"></p>
+              <ul id="growthPoints" class="detail-points"></ul>
+            </div>
+
             <h2>All Project Screens</h2>
             <div class="project-gallery-grid" id="galleryGrid"></div>
           </div>
@@ -365,6 +422,48 @@
         return '';
       }
 
+      function detailPoints(kind) {
+        var client = project.client || project.name || 'the client';
+        var location = project.location || 'target market';
+        var category = project.categoryLabel || 'digital project';
+        var stack = (project.stack || []).slice(0, 3);
+        var leadStack = stack.length ? stack.join(', ') : 'modern website stack';
+
+        if (kind === 'goals') {
+          return [
+            'Increase trust and conversion readiness for ' + client + ' in ' + location + '.',
+            'Present services and offerings with clearer decision paths for first-time visitors.',
+            'Reduce drop-offs by improving clarity of value proposition and contact intent.'
+          ];
+        }
+
+        if (kind === 'execution') {
+          return [
+            'Designed a cleaner information hierarchy for this ' + category.toLowerCase() + ' experience.',
+            'Built responsive sections for mobile-first discovery and fast CTA access.',
+            'Implemented conversion-focused layouts using ' + leadStack + ' for scalable growth.'
+          ];
+        }
+
+        if (kind === 'growth') {
+          return [
+            'Prepared reusable content structure to support future campaign pages.',
+            'Enabled easier updates for offers, testimonials, and seasonal promotions.',
+            'Created a stronger digital foundation for long-term performance marketing.'
+          ];
+        }
+
+        return [];
+      }
+
+      function renderPointList(id, points) {
+        var wrap = document.getElementById(id);
+        if (!wrap) return;
+        wrap.innerHTML = points.map(function(item) {
+          return '<li><i class="fas fa-check-circle"></i><span>' + item + '</span></li>';
+        }).join('');
+      }
+
       heroName.textContent = project.name;
       crumbName.textContent = project.name;
       heroSummary.textContent = project.summary;
@@ -415,6 +514,13 @@
       document.getElementById('challengeText').textContent = detailedCopy('challenge');
       document.getElementById('solutionText').textContent = detailedCopy('solution');
       document.getElementById('outcomeText').textContent = detailedCopy('outcome');
+      document.getElementById('goalText').textContent = 'This project was planned to make the brand look premium, credible, and action-ready from the first screen. The focus was to connect design clarity with business objectives, not just visual improvement.';
+      document.getElementById('executionText').textContent = 'From content mapping to final interface polish, every section was arranged to remove friction and support faster user decisions. We aligned structure, visuals, and call-to-action flow for real customer journeys.';
+      document.getElementById('growthText').textContent = 'Beyond launch, this build gives the business a stronger base for ongoing growth. The layout and section system are now easier to scale for ads, seasonal campaigns, and service expansion without redesigning from scratch.';
+
+      renderPointList('goalPoints', detailPoints('goals'));
+      renderPointList('executionPoints', detailPoints('execution'));
+      renderPointList('growthPoints', detailPoints('growth'));
 
       stackWrap.innerHTML = (project.stack || []).map(function(item) {
         return '<span class="tech-badge">' + item + '</span>';
