@@ -985,7 +985,7 @@ button { cursor: pointer; font-family: inherit; }
 .tc-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
 .tc-avatar.tc-photo { width: 148px; height: 148px; border-radius: 50%; border: 3px solid rgba(255,255,255,.65); box-shadow: 0 14px 34px rgba(0,0,0,.22); background: rgba(255,255,255,.18); }
 .tc-avatar.tc-photo img { object-fit: cover; object-position: center; }
-.tc-avatar.tc-photo img[alt="Sandeep Sharma"] { object-position: center top; }
+.tc-avatar.tc-photo img[alt="Sandeep Sharma"] { object-position: center 18%; }
 .tc-social { display: none; position: absolute; bottom: 12px; left: 50%; justify-content: center; gap: 8px; padding: 8px 10px; border-radius: 999px; transform: translate(-50%, 10px); opacity: 0; transition: var(--transition); background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(8px); pointer-events: none; }
 .team-card:hover .tc-social { transform: translate(-50%, 0); opacity: 0; pointer-events: none; }
 .tc-social a { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.25); color: white; display: flex; align-items: center; justify-content: center; font-size: .75rem; transition: var(--transition); text-decoration: none; }
