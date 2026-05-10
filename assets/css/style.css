@@ -983,6 +983,8 @@ button { cursor: pointer; font-family: inherit; }
 .tc-bg6 { background: linear-gradient(135deg, #ec4899, #ef4444); }
 .tc-avatar { width: 86px; height: 86px; border-radius: 50%; background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 800; color: white; border: 2px solid rgba(255,255,255,.5); box-shadow: 0 10px 30px rgba(0,0,0,.2); overflow: hidden; }
 .tc-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.tc-avatar.tc-photo { width: 100%; height: 100%; border-radius: 0; border: 0; box-shadow: none; background: transparent; }
+.tc-avatar.tc-photo img { object-position: center; }
 .tc-social { position: absolute; bottom: 12px; left: 50%; display: flex; justify-content: center; gap: 8px; padding: 8px 10px; border-radius: 999px; transform: translate(-50%, 10px); opacity: 0; transition: var(--transition); background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(8px); pointer-events: none; }
 .team-card:hover .tc-social { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
 .tc-social a { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.25); color: white; display: flex; align-items: center; justify-content: center; font-size: .75rem; transition: var(--transition); text-decoration: none; }
