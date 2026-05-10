@@ -983,10 +983,10 @@ button { cursor: pointer; font-family: inherit; }
 .tc-bg6 { background: linear-gradient(135deg, #ec4899, #ef4444); }
 .tc-avatar { width: 86px; height: 86px; border-radius: 50%; background: rgba(255,255,255,.22); display: flex; align-items: center; justify-content: center; font-family: 'Space Grotesk', sans-serif; font-size: 1.8rem; font-weight: 800; color: white; border: 2px solid rgba(255,255,255,.5); box-shadow: 0 10px 30px rgba(0,0,0,.2); overflow: hidden; }
 .tc-avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
-.tc-avatar.tc-photo { width: 100%; height: 100%; border-radius: 0; border: 0; box-shadow: none; background: transparent; }
+.tc-avatar.tc-photo { width: 148px; height: 148px; border-radius: 50%; border: 3px solid rgba(255,255,255,.65); box-shadow: 0 14px 34px rgba(0,0,0,.22); background: rgba(255,255,255,.18); }
 .tc-avatar.tc-photo img { object-fit: contain; object-position: center; }
-.tc-social { position: absolute; bottom: 12px; left: 50%; display: flex; justify-content: center; gap: 8px; padding: 8px 10px; border-radius: 999px; transform: translate(-50%, 10px); opacity: 0; transition: var(--transition); background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(8px); pointer-events: none; }
-.team-card:hover .tc-social { transform: translate(-50%, 0); opacity: 1; pointer-events: auto; }
+.tc-social { display: none; position: absolute; bottom: 12px; left: 50%; justify-content: center; gap: 8px; padding: 8px 10px; border-radius: 999px; transform: translate(-50%, 10px); opacity: 0; transition: var(--transition); background: rgba(255,255,255,.18); border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(8px); pointer-events: none; }
+.team-card:hover .tc-social { transform: translate(-50%, 0); opacity: 0; pointer-events: none; }
 .tc-social a { width: 30px; height: 30px; border-radius: 50%; background: rgba(255,255,255,.25); color: white; display: flex; align-items: center; justify-content: center; font-size: .75rem; transition: var(--transition); text-decoration: none; }
 .tc-social a:hover { background: white; color: var(--blue-main); }
 .tc-info { padding: 22px 16px 26px; background: white; }
